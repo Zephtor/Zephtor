@@ -1,1 +1,629 @@
-<h1>Project ZephTor.</h1>
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Project ZephTor</title>
+<style>
+  :root{
+    --red:#FF2D2D;
+    --red-600:#e02626;
+    --oled:#000000;
+    --bg:#070707;
+    --glass-light: rgba(255,255,255,0.03);
+    --glass-dark: rgba(0,0,0,0.35);
+    --card-border: rgba(255,45,45,0.12);
+    --fw-700: 700;
+    --max-w: 1100px;
+    --radius: 16px;
+  }
+
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(255,45,45,0.035), transparent 6%),
+                radial-gradient(900px 500px at 90% 90%, rgba(255,45,45,0.02), transparent 6%),
+                var(--oled);
+    color:#fff;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    overflow-y:auto;
+  }
+
+  /* Canvas background */
+  #bg {
+    position:fixed;
+    inset:0;
+    z-index:0;
+    display:block;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    mix-blend-mode:screen;
+    opacity:0.9;
+    filter: contrast(1.05) saturate(1.1);
+  }
+
+  .container{
+    position:relative;
+    z-index:2;
+    max-width:var(--max-w);
+    margin:48px auto;
+    padding:28px;
+    box-sizing:border-box;
+  }
+
+  header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+    margin-bottom:28px;
+  }
+
+  .brand{
+    display:flex;
+    gap:12px;
+    align-items:center;
+  }
+
+  .logo{
+    width:56px;
+    height:56px;
+    border-radius:12px;
+    background:linear-gradient(135deg, rgba(255,45,45,0.18), rgba(255,45,45,0.06));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    backdrop-filter: blur(8px) saturate(120%);
+    border:1px solid var(--card-border);
+    box-shadow: 0 6px 22px rgba(255,45,45,0.04), inset 0 -4px 14px rgba(0,0,0,0.45);
+    font-weight:700;
+    color:var(--red);
+    font-family:monospace;
+  }
+
+  .title{
+    line-height:1;
+  }
+  .title h1{font-size:20px;margin:0;font-weight:700;letter-spacing:0.6px}
+  .title p{margin:0;font-size:12px;color: #d0d0d0}
+
+  /* Theme toggle stub */
+  .actions{display:flex;gap:12px;align-items:center}
+  .btn{
+    background:transparent;
+    border:1px solid rgba(255,255,255,0.06);
+    color:#fff;
+    padding:8px 12px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:13px;
+    backdrop-filter: blur(6px);
+  }
+
+  main{
+    display:grid;
+    grid-template-columns: 1fr 360px;
+    gap:24px;
+    align-items:start;
+  }
+
+  /* Hero Panel */
+  .hero{
+    border-radius:var(--radius);
+    padding:36px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.28));
+    border:1px solid var(--card-border);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+    backdrop-filter: blur(12px) saturate(120%);
+    position:relative;
+    overflow:hidden;
+  }
+
+  .hero .copy{
+    max-width:720px;
+  }
+
+  .hero h2{
+    font-size:44px;
+    margin:0 0 8px 0;
+    line-height:0.95;
+    letter-spacing:-1px;
+    text-shadow: 0 6px 40px rgba(255,45,45,0.06);
+    color: #fff;
+  }
+
+  .sub{
+    margin:0 0 18px 0;
+    color:#d5d5d5;
+    font-size:15px;
+  }
+
+  .cta-row{display:flex;gap:12px;align-items:center}
+  .cta{
+    background:linear-gradient(180deg,var(--red),var(--red-600));
+    padding:12px 18px;
+    border-radius:12px;
+    color:#fff;
+    font-weight:600;
+    border:0;
+    cursor:pointer;
+    box-shadow: 0 8px 30px rgba(255,45,45,0.12);
+  }
+
+  .secondary-cta{
+    background:transparent;
+    border:1px solid rgba(255,255,255,0.06);
+    color:#fff;
+    padding:10px 14px;
+    border-radius:10px;
+    cursor:pointer;
+  }
+
+  /* Parallax glass cards inside hero */
+  .glass-layers{
+    position:absolute;
+    right:24px;
+    top:24px;
+    display:flex;
+    gap:12px;
+    transform-style:preserve-3d;
+    perspective:900px;
+  }
+  .glass{
+    width:220px;
+    height:120px;
+    border-radius:14px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,45,45,0.08);
+    backdrop-filter: blur(14px) saturate(120%);
+    padding:12px;
+    color:#fff;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+    transition: transform 450ms cubic-bezier(.2,.9,.2,1), box-shadow 300ms;
+  }
+  .glass small{opacity:0.85;color:#f3f3f3;font-size:12px}
+  .glass p{margin:4px 0 0 0;font-weight:600}
+
+  .glass:hover{
+    transform: translateZ(40px) rotateX(3deg) rotateY(-4deg) scale(1.02);
+    box-shadow: 0 26px 80px rgba(255,45,45,0.06), 0 2px 18px rgba(0,0,0,0.6);
+  }
+
+  /* Project grid (left column content) */
+  .projects{
+    margin-top:24px;
+    display:grid;
+    grid-template-columns: repeat(2,1fr);
+    gap:14px;
+  }
+
+  .card{
+    border-radius:12px;
+    overflow:hidden;
+    position:relative;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.28));
+    border:1px solid rgba(255,45,45,0.06);
+    padding:16px;
+    min-height:120px;
+    transition: transform 300ms cubic-bezier(.2,.9,.2,1), box-shadow 300ms;
+    display:flex;
+    gap:12px;
+    align-items:center;
+    cursor:pointer;
+  }
+  .thumb{
+    width:72px;height:72px;border-radius:10px;
+    background:linear-gradient(135deg, rgba(255,45,45,0.14), rgba(255,45,45,0.04));
+    display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--red);
+    border:1px solid rgba(255,45,45,0.08);
+  }
+  .meta h3{margin:0;font-size:16px}
+  .meta p{margin:4px 0 0 0;color:#cfcfcf;font-size:13px}
+
+  .card:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 26px 60px rgba(255,45,45,0.04);
+    border:1px solid rgba(255,45,45,0.14);
+  }
+
+  /* Right column */
+  aside{
+    position:relative;
+  }
+  .spotlight{
+    border-radius:14px;
+    padding:18px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.32));
+    border:1px solid rgba(255,45,45,0.08);
+    backdrop-filter: blur(12px);
+  }
+  .spotlight h4{margin:0 0 8px 0}
+  .timeline{
+    margin-top:14px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .node{
+    display:flex;gap:10px;align-items:center;
+  }
+  .dot{
+    width:12px;height:12px;border-radius:50%;background:var(--red);
+    box-shadow:0 6px 18px rgba(255,45,45,0.12);
+  }
+  footer{
+    margin-top:36px;color:#9a9a9a;font-size:13px;padding:18px 0;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+
+  /* Modal */
+  .modal-backdrop{
+    position:fixed;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.8));
+    display:none;align-items:center;justify-content:center;z-index:40;
+  }
+  .modal{
+    width:min(920px,92%);
+    border-radius:14px;
+    padding:24px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.36));
+    border:1px solid rgba(255,45,45,0.08);
+    backdrop-filter: blur(14px) saturate(120%);
+    box-shadow: 0 32px 120px rgba(0,0,0,0.8);
+    color:#fff;
+  }
+  .close{
+    position:absolute;right:18px;top:18px;background:transparent;border:0;color:#fff;font-size:20px;cursor:pointer;
+  }
+
+  /* small screens */
+  @media (max-width:980px){
+    main{grid-template-columns:1fr; padding-bottom:80px}
+    .glass-layers{display:none}
+    .projects{grid-template-columns:1fr}
+    header{flex-direction:column;align-items:flex-start;gap:10px}
+    .container{margin:20px;padding:18px}
+  }
+
+  /* prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    *{animation:none!important;transition:none!important}
+    #bg{opacity:0.7}
+  }
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+
+<div class="container" role="main">
+  <header>
+    <div class="brand" aria-hidden="false">
+      <div class="logo">Z</div>
+      <div class="title">
+        <h1>Project ZephTor</h1>
+        <p>Hub für Projekte — Ambient, Glassmorphism, Rot</p>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn" id="btn-theme" title="Theme toggle">OLED</button>
+      <button class="btn" id="btn-about">About</button>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="hero" id="hero">
+        <div class="copy">
+          <h2 id="hero-title">Project ZephTor</h2>
+          <p class="sub">Ein visuelles Hub für meine Projekte — Glassmorphism, ambient background, starke rote Akzente und flüssige Animationen.</p>
+          <div class="cta-row">
+            <button class="cta" id="open-projects">Explore Projects</button>
+            <button class="secondary-cta" id="open-contact">Contact</button>
+          </div>
+        </div>
+
+        <div class="glass-layers" aria-hidden="true">
+          <div class="glass" data-depth="0.08"><small>Realtime</small><p>Renderer</p></div>
+          <div class="glass" data-depth="0.04"><small>UX</small><p>Interactions</p></div>
+          <div class="glass" data-depth="0.02"><small>Design</small><p>Tokens</p></div>
+        </div>
+
+        <div class="projects" id="projects">
+          <div class="card" data-id="1" tabindex="0">
+            <div class="thumb">A</div>
+            <div class="meta">
+              <h3>Alpha Engine</h3>
+              <p>Realtime visual toy — WebGL canvas</p>
+            </div>
+          </div>
+
+          <div class="card" data-id="2" tabindex="0">
+            <div class="thumb">B</div>
+            <div class="meta">
+              <h3>Beacon</h3>
+              <p>Notification & routing toolkit</p>
+            </div>
+          </div>
+
+          <div class="card" data-id="3" tabindex="0">
+            <div class="thumb">C</div>
+            <div class="meta">
+              <h3>Cascade</h3>
+              <p>UI motion library</p>
+            </div>
+          </div>
+
+          <div class="card" data-id="4" tabindex="0">
+            <div class="thumb">D</div>
+            <div class="meta">
+              <h3>Drift</h3>
+              <p>Ambient music engine</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside>
+      <div class="spotlight">
+        <h4>Spotlight</h4>
+        <p style="color:#d4d4d4;margin:6px 0 12px 0">Featured: Alpha Engine — lightweight WebGL background renderer with particles & noise.</p>
+        <div class="timeline" aria-hidden="true">
+          <div class="node"><div class="dot"></div><div>Prototype — Q1</div></div>
+          <div class="node"><div class="dot"></div><div>UI polish — Q2</div></div>
+          <div class="node"><div class="dot"></div><div>Public beta — Q3</div></div>
+        </div>
+      </div>
+
+      <footer>
+        <div>© Project ZephTor</div>
+        <div style="opacity:0.8">Built with ❤️</div>
+      </footer>
+    </aside>
+  </main>
+</div>
+
+<!-- Modal -->
+<div class="modal-backdrop" id="modal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="close" id="close-modal" aria-label="Close">&times;</button>
+    <h2 id="modal-title">Project Title</h2>
+    <p id="modal-desc" style="color:#d5d5d5">Details about the project will appear here. This modal uses a shared-element-like animation when opening.</p>
+    <div style="margin-top:16px;display:flex;gap:10px">
+      <button class="cta">Open Repo</button>
+      <button class="secondary-cta" id="modal-close">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* Background canvas ambient particles (simple, performant) */
+(() => {
+  const canvas = document.getElementById('bg');
+  const ctx = canvas.getContext('2d');
+  let w = canvas.width = innerWidth;
+  let h = canvas.height = innerHeight;
+  const DPR = Math.min(devicePixelRatio || 1, 2);
+  canvas.width = Math.floor(w * DPR);
+  canvas.height = Math.floor(h * DPR);
+  canvas.style.width = w + 'px';
+  canvas.style.height = h + 'px';
+  ctx.scale(DPR, DPR);
+
+  const particles = [];
+  const PARTICLE_COUNT = Math.round((w*h)/80000); // scalable
+  for(let i=0;i<PARTICLE_COUNT;i++){
+    particles.push({
+      x: Math.random()*w,
+      y: Math.random()*h,
+      vx: (Math.random()-0.5)*0.15,
+      vy: (Math.random()-0.5)*0.15,
+      r: 0.6 + Math.random()*2.5,
+      hue: 350 + Math.random()*20,
+      alpha: 0.03 + Math.random()*0.12,
+      tw: Math.random()*Math.PI*2
+    });
+  }
+
+  let last = performance.now();
+  function render(now){
+    const dt = Math.min(60, now - last);
+    last = now;
+    ctx.clearRect(0,0,w,h);
+
+    // subtle gradient overlay
+    const g = ctx.createLinearGradient(0,0,w,h);
+    g.addColorStop(0, 'rgba(255,20,20,0.02)');
+    g.addColorStop(1, 'rgba(0,0,0,0.02)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0,0,w,h);
+
+    for(const p of particles){
+      p.x += p.vx * (dt*0.06);
+      p.y += p.vy * (dt*0.06);
+      p.tw += 0.002*(dt);
+      // wrap
+      if(p.x < -10) p.x = w + 10;
+      if(p.x > w + 10) p.x = -10;
+      if(p.y < -10) p.y = h + 10;
+      if(p.y > h + 10) p.y = -10;
+
+      const grd = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r*6);
+      const a = 0.08 + Math.sin(p.tw)*0.04 + p.alpha;
+      grd.addColorStop(0, `hsla(${p.hue}, 90%, 60%, ${a})`);
+      grd.addColorStop(1, `rgba(0,0,0,0)`);
+      ctx.fillStyle = grd;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r*6, 0, Math.PI*2);
+      ctx.fill();
+    }
+
+    // faint moving nebula bands
+    ctx.globalCompositeOperation = 'lighter';
+    ctx.globalAlpha = 0.035;
+    ctx.fillStyle = 'rgba(255,20,20,0.03)';
+    const t = now*0.00008;
+    for(let i=0;i<3;i++){
+      ctx.beginPath();
+      const amp = 80 + i*40;
+      for(let x=0;x<w;x+=20){
+        const yoff = Math.sin(x*0.002 + t*(0.8+i*0.4) + i) * amp + h*0.25 + i*(h*0.18);
+        if(x===0) ctx.moveTo(x,yoff); else ctx.lineTo(x,yoff);
+      }
+      ctx.lineTo(w,h);
+      ctx.lineTo(0,h);
+      ctx.closePath();
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = 'source-over';
+    requestAnimationFrame(render);
+  }
+  requestAnimationFrame(render);
+  addEventListener('resize', ()=> {
+    w = canvas.width = innerWidth;
+    h = canvas.height = innerHeight;
+    canvas.width = Math.floor(w * DPR);
+    canvas.height = Math.floor(h * DPR);
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    ctx.scale(DPR, DPR);
+  });
+})();
+
+/* Simple text reveal for hero */
+(() => {
+  const el = document.getElementById('hero-title');
+  const txt = el.textContent.trim();
+  el.textContent = '';
+  const chars = txt.split('');
+  chars.forEach((ch,i)=>{
+    const span = document.createElement('span');
+    span.textContent = ch;
+    span.style.display='inline-block';
+    span.style.opacity=0;
+    span.style.transform='translateY(8px)';
+    span.style.transition=`all 550ms cubic-bezier(.2,.9,.2,1) ${i*35}ms`;
+    el.appendChild(span);
+  });
+  requestAnimationFrame(()=> {
+    Array.from(el.children).forEach((s)=> {
+      s.style.opacity=1;
+      s.style.transform='translateY(0)';
+    });
+  });
+})();
+
+/* Parallax on glass-layers driven by mouse */
+(() => {
+  const wrap = document.querySelector('.glass-layers');
+  if(!wrap) return;
+  const glasses = Array.from(wrap.children);
+  const hero = document.getElementById('hero');
+  function move(e){
+    const r = hero.getBoundingClientRect();
+    const cx = r.left + r.width/2;
+    const cy = r.top + r.height/2;
+    const dx = (e.clientX - cx) / r.width;
+    const dy = (e.clientY - cy) / r.height;
+    glasses.forEach(g=>{
+      const depth = parseFloat(g.dataset.depth || 0.03);
+      const tx = -dx * depth * 30;
+      const ty = -dy * depth * 18;
+      const rz = dx * depth * 6;
+      g.style.transform = `translate(${tx}px, ${ty}px) rotateY(${rz}deg)`;
+    });
+  }
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  hero.addEventListener('mousemove', move);
+  hero.addEventListener('mouseleave', ()=> glasses.forEach(g=>g.style.transform='translate(0,0) rotateY(0)'));
+})();
+
+/* Card click -> modal with simple shared-element illusion */
+(() => {
+  const cards = document.querySelectorAll('.card');
+  const modal = document.getElementById('modal');
+  const modalTitle = document.getElementById('modal-title');
+  const modalDesc = document.getElementById('modal-desc');
+  const close = document.getElementById('close-modal');
+  const modalClose = document.getElementById('modal-close');
+
+  function openCard(card){
+    const id = card.dataset.id;
+    modalTitle.textContent = card.querySelector('.meta h3').textContent;
+    modalDesc.textContent = card.querySelector('.meta p').textContent + ' — ausführliche Beschreibung, Links und Status werden hier angezeigt.';
+    modal.style.display = 'flex';
+    modal.animate([{opacity:0},{opacity:1}],{duration:280,easing:'cubic-bezier(.2,.9,.2,1)'});
+    // focus for accessibility
+    setTimeout(()=> modal.querySelector('.modal').focus?.(),300);
+  }
+
+  function closeModal(){
+    modal.animate([{opacity:1},{opacity:0}],{duration:220,easing:'cubic-bezier(.2,.9,.2,1)'}).onfinish = ()=>{
+      modal.style.display='none';
+    };
+  }
+
+  cards.forEach(c=>{
+    c.addEventListener('click', ()=> openCard(c));
+    c.addEventListener('keypress', (e)=>{
+      if(e.key==='Enter' || e.key===' ') openCard(c);
+    });
+  });
+  close.addEventListener('click', closeModal);
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e)=>{
+    if(e.target === modal) closeModal();
+  });
+  addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape' && modal.style.display==='flex') closeModal();
+  });
+})();
+
+/* Simple theme toggle (OLED vs softer) */
+(() => {
+  const btn = document.getElementById('btn-theme');
+  let oled = true;
+  btn.addEventListener('click', ()=>{
+    oled = !oled;
+    if(oled){
+      document.documentElement.style.setProperty('--bg', 'black');
+      document.body.style.background = 'radial-gradient(1200px 600px at 10% 10%, rgba(255,45,45,0.035), transparent 6%), radial-gradient(900px 500px at 90% 90%, rgba(255,45,45,0.02), transparent 6%), var(--oled)';
+      btn.textContent='OLED';
+    } else {
+      document.body.style.background = 'linear-gradient(180deg,#0b0710,#0f0b12)';
+      btn.textContent='Soft';
+    }
+  });
+})();
+
+/* Small enhancements: hover glow for thumbs and keyboard focus rings */
+(() => {
+  const style = document.createElement('style');
+  style.textContent = `
+    .card:focus{outline:2px solid rgba(255,45,45,0.14);outline-offset:4px}
+    .thumb{transition:transform 220ms ease, box-shadow 220ms}
+    .card:hover .thumb{transform:translateY(-4px) scale(1.02); box-shadow:0 12px 40px rgba(255,45,45,0.06)}
+  `;
+  document.head.appendChild(style);
+})();
+
+/* Buttons that open simple actions */
+document.getElementById('open-projects').addEventListener('click', ()=> {
+  const firstCard = document.querySelector('.card');
+  if(firstCard) firstCard.scrollIntoView({behavior:'smooth', block:'center'});
+});
+document.getElementById('open-contact').addEventListener('click', ()=> {
+  alert('Kontakt: schick eine E‑Mail an deine-adresse@example.com (Platzhalter).');
+});
+document.getElementById('btn-about').addEventListener('click', ()=> {
+  alert('Project ZephTor — Hub für Projekte. Stil: Glassmorphism, Ambient, Rot.');
+});
+</script>
+</body>
+</html>
