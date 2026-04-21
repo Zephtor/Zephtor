@@ -11,9 +11,11 @@
       --glass-bg: rgba(15, 15, 15, 0.5);
       --glass-border: rgba(255, 59, 59, 0.2);
       --glass-shadow: 0 8px 32px rgba(255, 59, 59, 0.1);
-      --max-width: 1200px;
       --border-radius: 12px;
       --transition: all 0.3s ease;
+      --max-width: 1200px;
+      --scrollbar-width: 6px;
+      --scrollbar-thumb: rgba(255, 59, 59, 0.3);
     }
 
     * {
@@ -132,64 +134,144 @@
       color: var(--red);
     }
 
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 30px;
+    .projects-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      height: 70vh;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--scrollbar-thumb) transparent;
+      padding: 0 20px;
     }
 
-    .project-card {
+    .projects-container::-webkit-scrollbar {
+      width: var(--scrollbar-width);
+    }
+
+    .projects-container::-webkit-scrollbar-thumb {
+      background-color: var(--scrollbar-thumb);
+      border-radius: 10px;
+    }
+
+    .projects-container::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .projects-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .project-frame {
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
       border-radius: var(--border-radius);
-      padding: 30px;
-      transition: var(--transition);
-      backdrop-filter: blur(10px);
+      padding: 24px;
+      backdrop-filter: blur(12px);
       box-shadow: var(--glass-shadow);
+      transition: var(--transition);
     }
 
-    .project-card:hover {
+    .project-frame:hover {
       box-shadow: 0 8px 32px rgba(255, 59, 59, 0.2);
-      transform: translateY(-5px);
+      transform: translateY(-4px);
+    }
+
+    .project-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
     }
 
     .project-icon {
-      width: 60px;
-      height: 60px;
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
+      width: 48px;
+      height: 48px;
+      background: rgba(255, 59, 59, 0.1);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 20px;
-      backdrop-filter: blur(10px);
+      margin-right: 12px;
+      border: 1px solid var(--glass-border);
     }
 
-    .project-card h3 {
-      text-align: center;
-      font-size: 1.5rem;
-      margin-bottom: 15px;
-      color: var(--red);
+    .project-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #ffffff;
     }
 
-    .project-card p {
-      text-align: center;
-      color: #b0b0b0;
+    .project-status {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+      font-size: 0.9rem;
+    }
+
+    .status-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    .status-indicator.online {
+      background-color: #4CAF50;
+    }
+
+    .status-indicator.dnd {
+      background-color: #ff9800;
+    }
+
+    .status-indicator.maintenance {
+      background-color: #2196F3;
+    }
+
+    .status-indicator.offline {
+      background-color: #607d8b;
+    }
+
+    .project-meta {
       margin-bottom: 20px;
     }
 
-    .project-link {
-      display: block;
-      text-align: center;
-      padding: 10px 20px;
-      background: rgba(255, 59, 59, 0.1);
-      border-radius: var(--border-radius);
-      transition: var(--transition);
+    .project-meta p {
+      color: #b0b0b0;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
     }
 
-    .project-link:hover {
+    .project-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .project-btn {
+      flex: 1;
+      padding: 10px 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      color: #ff6b6b;
+      text-align: center;
+      transition: var(--transition);
+      backdrop-filter: blur(8px);
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .project-btn:hover {
       background: rgba(255, 59, 59, 0.2);
+      border-color: rgba(255, 59, 59, 0.3);
+    }
+
+    .project-btn.primary {
+      background: rgba(255, 59, 59, 0.2);
+    }
+
+    .project-btn.primary:hover {
+      background: rgba(255, 59, 59, 0.3);
     }
 
     /* About Section */
@@ -328,53 +410,71 @@
   <section class="projects" id="projects">
     <div class="container">
       <h2>Meine Projekte</h2>
-      <div class="projects-grid">
-        <!-- Project 1 -->
-        <div class="project-card">
-          <div class="project-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-            </svg>
-          </div>
-          <h3>Alpha Engine</h3>
-          <p>Ein WebGL-basierter Renderer für interaktive Hintergrundanimationen mit minimalem Ressourcenverbrauch.</p>
-          <a href="#" class="project-link">Mehr erfahren</a>
-        </div>
+      <div class="projects-container">
+        <div class="projects-grid">
+          <!-- DC Bot Project -->
+          <div class="project-frame">
+            <div class="project-header">
+              <div class="project-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 8V4H8"></path>
+                  <path d="M2 12h2"></path>
+                  <path d="M20 12h2"></path>
+                  <path d="M5 16H3a2 2 0 0 0-2 2v2c0 1.1.9 2 2 2h2"></path>
+                  <path d="M19 16h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2"></path>
+                  <path d="M12 22v-4"></path>
+                  <path d="M8 2h2a2 2 0 0 1 2 2v2"></path>
+                  <path d="M14 2h2a2 2 0 0 1 2 2v2"></path>
+                  <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0-6 0"></path>
+                </svg>
+              </div>
+              <h1 class="project-title">DC Bot</h1>
+            </div>
 
-        <!-- Project 2 -->
-        <div class="project-card">
-          <div class="project-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-            </svg>
-          </div>
-          <h3>Beacon System</h3>
-          <p>Ein Echtzeit-Benachrichtigungssystem mit intelligentem Routing für moderne Webanwendungen.</p>
-          <a href="#" class="project-link">Mehr erfahren</a>
-        </div>
+            <div class="project-status">
+              <div class="status-indicator online"></div>
+              <span>Status: <strong>Online</strong></span>
+            </div>
 
-        <!-- Project 3 -->
-        <div class="project-card">
-          <div class="project-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-            </svg>
-          </div>
-          <h3>Cascade UI</h3>
-          <p>UI-Komponenten für flüssige Interaktionen und Animationen, die jedes Projekt aufwertet.</p>
-          <a href="#" class="project-link">Mehr erfahren</a>
-        </div>
+            <div class="project-meta">
+              <p><strong>Latest Update:</strong> v2.1.4 (20.04.2026)</p>
+              <p><strong>Uptime:</strong> 99.8%</p>
+            </div>
 
-        <!-- Project 4 -->
-        <div class="project-card">
-          <div class="project-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-            </svg>
+            <div class="project-actions">
+              <button class="project-btn primary">View More</button>
+              <button class="project-btn">Dashboard</button>
+            </div>
           </div>
-          <h3>Drift Audio</h3>
-          <p>Ein Ambient-Audio-Engine für generative Soundscapes und immersive Audio-Erlebnisse.</p>
-          <a href="#" class="project-link">Mehr erfahren</a>
+
+          <!-- Mod Hub Project -->
+          <div class="project-frame">
+            <div class="project-header">
+              <div class="project-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                  <path d="M7.5 4.21l-5 3V20a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7.21l-5-3"></path>
+                  <path d="M15 12a3 3 0 1 1-6 0a3 3 0 0 1 6 0z"></path>
+                </svg>
+              </div>
+              <h1 class="project-title">Mod Hub</h1>
+            </div>
+
+            <div class="project-status">
+              <div class="status-indicator maintenance"></div>
+              <span>Status: <strong>Maintenance</strong></span>
+            </div>
+
+            <div class="project-meta">
+              <p><strong>Latest Update:</strong> v1.3.0 (18.04.2026)</p>
+              <p><strong>Uptime:</strong> 98.5%</p>
+            </div>
+
+            <div class="project-actions">
+              <button class="project-btn primary">View More</button>
+              <button class="project-btn">Go to Hub</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
