@@ -6,18 +6,25 @@
   <title>Project ZephTor | Modern Tech Hub</title>
   <style>
     :root {
+      /* Reines Rot-Theme (dein gewünschter Ton: #ff3b3b) */
       --red: #ff3b3b;
-      --red-dark: #cc0000;
-      --glass-bg: rgba(15, 15, 15, 0.5);
-      --glass-border: rgba(255, 59, 59, 0.2);
-      --glass-shadow: 0 8px 32px rgba(255, 59, 59, 0.1);
+      --red-dark: #e03131;
+      --red-light: #ff6b6b;
+      --surface: #0a0a0a;
+      --mantle: #111111;
+      --crust: #050505;
+      --glass-bg: rgba(10, 10, 10, 0.4);
+      --glass-border: rgba(255, 59, 59, 0.15);
+      --glass-shadow: 0 8px 25px rgba(255, 59, 59, 0.1);
       --border-radius: 12px;
-      --transition: all 0.3s ease;
+      --transition: all 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
       --max-width: 1200px;
-      --scrollbar-width: 6px;
+      --neon-glow: 0 0 10px rgba(255, 59, 59, 0.3);
+      --blur-intensity: 16px;
       --scrollbar-thumb: rgba(255, 59, 59, 0.3);
     }
 
+    /* Base Styles */
     * {
       margin: 0;
       padding: 0;
@@ -25,16 +32,14 @@
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #0a0a0a;
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      background-color: var(--crust);
       color: #e0e0e0;
       line-height: 1.6;
       overflow-x: hidden;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     .container {
@@ -44,117 +49,230 @@
       padding: 0 20px;
     }
 
-    /* Navbar */
+    /* Ultra-Smooth Background mit reinem Rot */
+    .bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .gradient-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255, 59, 59, 0.05) 0%, transparent 60%),
+        radial-gradient(circle at 80% 70%, rgba(255, 59, 59, 0.03) 0%, transparent 60%);
+      z-index: -2;
+      pointer-events: none;
+      animation: gradientPulse 30s infinite alternate ease-in-out;
+    }
+
+    @keyframes gradientPulse {
+      0% { opacity: 0.6; }
+      50% { opacity: 0.8; }
+      100% { opacity: 0.6; }
+    }
+
+    /* Subtile schwebende Elemente (nur Desktop) */
+    .floating-element {
+      position: fixed;
+      z-index: -1;
+      opacity: 0.2;
+      animation: float 25s infinite ease-in-out;
+      filter: blur(4px);
+      background: linear-gradient(145deg, rgba(255, 59, 59, 0.06), rgba(255, 59, 59, 0.03));
+      border-radius: 50%;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-12px) rotate(2deg); }
+      75% { transform: translateY(12px) rotate(-2deg); }
+    }
+
+    /* Klar strukturierte Navbar */
     nav {
       position: fixed;
       top: 20px;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 100;
+      z-index: 1000;
+      display: flex;
+      gap: 24px;
+      padding: 10px 20px;
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
       border-radius: 50px;
-      padding: 10px 20px;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(var(--blur-intensity));
       box-shadow: var(--glass-shadow);
+      transition: var(--transition);
+    }
+
+    nav:hover {
+      box-shadow: 0 0 20px rgba(255, 59, 59, 0.15);
     }
 
     nav a {
-      margin: 0 15px;
-      color: #ff6b6b;
+      color: var(--red-light);
+      font-weight: 500;
       transition: var(--transition);
+      position: relative;
+      padding: 6px 0;
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
     }
 
     nav a:hover {
       color: #ffffff;
+      text-shadow: var(--neon-glow);
     }
 
-    /* Hero Section */
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent, var(--red), transparent);
+      transition: width 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section (klar und fokussiert) */
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 100px 20px 0;
+      padding: 120px 20px 60px;
       position: relative;
     }
 
     .hero-content {
       max-width: 800px;
       margin: 0 auto;
+      position: relative;
+      z-index: 2;
     }
 
     .hero h1 {
-      font-size: 3.5rem;
-      margin-bottom: 20px;
-      background: linear-gradient(90deg, var(--red), var(--red-dark));
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      margin-bottom: 24px;
+      background: linear-gradient(90deg, var(--red), var(--red-light));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      text-shadow: var(--neon-glow);
+      animation: textPulse 6s infinite alternate;
+    }
+
+    @keyframes textPulse {
+      0% { text-shadow: var(--neon-glow); }
+      100% { text-shadow: 0 0 15px rgba(255, 59, 59, 0.4); }
     }
 
     .hero p {
-      font-size: 1.2rem;
-      color: #b0b0b0;
-      margin-bottom: 30px;
+      font-size: clamp(1.1rem, 3vw, 1.3rem);
+      color: #a6a6a6;
+      margin-bottom: 40px;
       max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 0 auto 40px;
+      line-height: 1.8;
     }
 
     .btn {
       display: inline-block;
-      padding: 12px 30px;
-      background: var(--glass-bg);
+      padding: 14px 36px;
+      background: linear-gradient(145deg, rgba(255, 59, 59, 0.15), rgba(255, 59, 59, 0.1));
       border: 1px solid var(--glass-border);
-      border-radius: var(--border-radius);
-      color: #ff6b6b;
+      border-radius: 50px;
+      color: #ffffff;
+      font-weight: 600;
       transition: var(--transition);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(var(--blur-intensity));
       box-shadow: var(--glass-shadow);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+      z-index: -1;
     }
 
     .btn:hover {
-      box-shadow: 0 8px 32px rgba(255, 59, 59, 0.2);
-      border-color: rgba(255, 59, 59, 0.3);
       transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(255, 59, 59, 0.2);
+      background: linear-gradient(145deg, rgba(255, 59, 59, 0.2), rgba(255, 59, 59, 0.15));
     }
 
-    /* Projects Section */
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    /* Projects Section (klar strukturiert) */
     .projects {
       padding: 100px 0;
-      background-color: #0d0d0d;
+      background: rgba(10, 10, 10, 0.1);
+      position: relative;
+    }
+
+    .projects::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 59, 59, 0.2), transparent);
     }
 
     .projects h2 {
       text-align: center;
-      font-size: 2.5rem;
+      font-size: clamp(2rem, 5vw, 2.5rem);
       margin-bottom: 50px;
-      color: var(--red);
+      color: #ffffff;
+      position: relative;
+      display: inline-block;
+    }
+
+    .projects h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--red), var(--red-light));
     }
 
     .projects-container {
       max-width: var(--max-width);
       margin: 0 auto;
       height: 70vh;
-      overflow-y: auto;
-      scrollbar-width: thin;
-      scrollbar-color: var(--scrollbar-thumb) transparent;
       padding: 0 20px;
-    }
-
-    .projects-container::-webkit-scrollbar {
-      width: var(--scrollbar-width);
-    }
-
-    .projects-container::-webkit-scrollbar-thumb {
-      background-color: var(--scrollbar-thumb);
-      border-radius: 10px;
-    }
-
-    .projects-container::-webkit-scrollbar-track {
-      background: transparent;
     }
 
     .projects-grid {
@@ -163,19 +281,23 @@
       gap: 20px;
     }
 
+    /* Project Frame (klar strukturiert, reines Rot) */
     .project-frame {
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
       border-radius: var(--border-radius);
       padding: 24px;
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(var(--blur-intensity));
       box-shadow: var(--glass-shadow);
       transition: var(--transition);
+      position: relative;
+      border-left: 2px solid var(--red);
     }
 
     .project-frame:hover {
-      box-shadow: 0 8px 32px rgba(255, 59, 59, 0.2);
       transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(255, 59, 59, 0.15);
+      border-left-color: var(--red-light);
     }
 
     .project-header {
@@ -185,21 +307,28 @@
     }
 
     .project-icon {
-      width: 48px;
-      height: 48px;
-      background: rgba(255, 59, 59, 0.1);
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 59, 59, 0.08);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-right: 12px;
+      margin-right: 16px;
       border: 1px solid var(--glass-border);
+      transition: var(--transition);
+    }
+
+    .project-frame:hover .project-icon {
+      background: rgba(255, 59, 59, 0.12);
+      border-color: rgba(255, 59, 59, 0.2);
     }
 
     .project-title {
       font-size: 1.4rem;
       font-weight: 600;
       color: #ffffff;
+      margin: 0;
     }
 
     .project-status {
@@ -207,6 +336,7 @@
       align-items: center;
       margin-bottom: 16px;
       font-size: 0.9rem;
+      color: #a6a6a6;
     }
 
     .status-indicator {
@@ -214,76 +344,118 @@
       height: 10px;
       border-radius: 50%;
       margin-right: 8px;
+      position: relative;
+      box-shadow: 0 0 6px rgba(255, 59, 59, 0.4);
     }
 
-    .status-indicator.online {
-      background-color: #4CAF50;
-    }
-
-    .status-indicator.dnd {
-      background-color: #ff9800;
-    }
-
-    .status-indicator.maintenance {
-      background-color: #2196F3;
-    }
-
-    .status-indicator.offline {
-      background-color: #607d8b;
-    }
+    .status-indicator.online { background-color: #4CAF50; }
+    .status-indicator.dnd { background-color: #ff9800; }
+    .status-indicator.maintenance { background-color: #2196F3; }
+    .status-indicator.offline { background-color: #607d8b; }
 
     .project-meta {
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .project-meta p {
-      color: #b0b0b0;
+      color: #a6a6a6;
       margin-bottom: 8px;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(166, 166, 166, 0.1);
+    }
+
+    .project-meta p:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
     }
 
     .project-actions {
       display: flex;
-      gap: 10px;
+      gap: 12px;
     }
 
     .project-btn {
       flex: 1;
       padding: 10px 16px;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(10, 10, 10, 0.3);
       border: 1px solid var(--glass-border);
       border-radius: 8px;
-      color: #ff6b6b;
+      color: var(--red-light);
       text-align: center;
       transition: var(--transition);
       backdrop-filter: blur(8px);
       font-size: 0.9rem;
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255, 59, 59, 0.05), transparent);
+      transform: translateX(-100%);
+      transition: 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
     }
 
     .project-btn:hover {
-      background: rgba(255, 59, 59, 0.2);
-      border-color: rgba(255, 59, 59, 0.3);
+      background: rgba(255, 59, 59, 0.15);
+      border-color: rgba(255, 59, 59, 0.2);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .project-btn:hover::before {
+      transform: translateX(100%);
     }
 
     .project-btn.primary {
-      background: rgba(255, 59, 59, 0.2);
+      background: rgba(255, 59, 59, 0.1);
+      color: #ffffff;
     }
 
-    .project-btn.primary:hover {
-      background: rgba(255, 59, 59, 0.3);
-    }
-
-    /* About Section */
+    /* About Section (klar strukturiert) */
     .about {
       padding: 100px 0;
+      position: relative;
+    }
+
+    .about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 59, 59, 0.2), transparent);
     }
 
     .about h2 {
       text-align: center;
-      font-size: 2.5rem;
+      font-size: clamp(2rem, 5vw, 2.5rem);
       margin-bottom: 50px;
-      color: var(--red);
+      color: #ffffff;
+      position: relative;
+      display: inline-block;
+    }
+
+    .about h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--red), var(--red-light));
     }
 
     .about-content {
@@ -292,29 +464,60 @@
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
       border-radius: var(--border-radius);
-      padding: 40px;
-      backdrop-filter: blur(10px);
+      padding: 36px;
+      backdrop-filter: blur(var(--blur-intensity));
       box-shadow: var(--glass-shadow);
+      transition: var(--transition);
+    }
+
+    .about-content:hover {
+      box-shadow: 0 10px 25px rgba(255, 59, 59, 0.1);
+      transform: translateY(-3px);
     }
 
     .about-content p {
-      color: #b0b0b0;
-      margin-bottom: 20px;
+      color: #a6a6a6;
+      margin-bottom: 18px;
       text-align: center;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
+      line-height: 1.8;
     }
 
-    /* Contact Section */
+    /* Contact Section (klar strukturiert) */
     .contact {
       padding: 100px 0;
-      background-color: #0d0d0d;
+      background: rgba(10, 10, 10, 0.1);
+      position: relative;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 59, 59, 0.2), transparent);
     }
 
     .contact h2 {
       text-align: center;
-      font-size: 2.5rem;
+      font-size: clamp(2rem, 5vw, 2.5rem);
       margin-bottom: 50px;
-      color: var(--red);
+      color: #ffffff;
+      position: relative;
+      display: inline-block;
+    }
+
+    .contact h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--red), var(--red-light));
     }
 
     .contact-form {
@@ -323,90 +526,174 @@
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
       border-radius: var(--border-radius);
-      padding: 40px;
-      backdrop-filter: blur(10px);
+      padding: 36px;
+      backdrop-filter: blur(var(--blur-intensity));
       box-shadow: var(--glass-shadow);
+      transition: var(--transition);
+    }
+
+    .contact-form:hover {
+      box-shadow: 0 10px 25px rgba(255, 59, 59, 0.1);
+      transform: translateY(-3px);
     }
 
     .contact-form input,
     .contact-form textarea {
       width: 100%;
-      padding: 15px;
+      padding: 14px;
       margin-bottom: 20px;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(10, 10, 10, 0.3);
       border: 1px solid var(--glass-border);
       border-radius: var(--border-radius);
       color: #e0e0e0;
       font-family: inherit;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(8px);
+      transition: var(--transition);
+      font-size: 1rem;
     }
 
     .contact-form input:focus,
     .contact-form textarea:focus {
       outline: none;
       border-color: var(--red);
-      box-shadow: 0 0 0 2px rgba(255, 59, 59, 0.3);
+      box-shadow: 0 0 0 2px rgba(255, 59, 59, 0.2);
+      background: rgba(10, 10, 10, 0.4);
+    }
+
+    .contact-form textarea {
+      min-height: 140px;
+      resize: vertical;
     }
 
     .contact-form button {
       width: 100%;
-      padding: 15px;
-      background: rgba(255, 59, 59, 0.2);
+      padding: 14px;
+      background: linear-gradient(145deg, rgba(255, 59, 59, 0.15), rgba(255, 59, 59, 0.1));
       border: none;
       border-radius: var(--border-radius);
       color: #ffffff;
       font-weight: 600;
       cursor: pointer;
       transition: var(--transition);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .contact-form button:hover {
-      background: rgba(255, 59, 59, 0.3);
-    }
-
-    /* Footer */
-    footer {
-      padding: 50px 0;
-      text-align: center;
-      color: #808080;
-      font-size: 0.9rem;
-    }
-
-    /* Particles Background */
-    #particles-js {
-      position: fixed;
+    .contact-form button::before {
+      content: '';
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -1;
-      pointer-events: none;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+      transform: translateX(-100%);
+      transition: 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    .contact-form button:hover {
+      background: linear-gradient(145deg, rgba(255, 59, 59, 0.2), rgba(255, 59, 59, 0.15));
+      box-shadow: 0 8px 20px rgba(255, 59, 59, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .contact-form button:hover::before {
+      transform: translateX(100%);
+    }
+
+    /* Footer (einfach und klar) */
+    footer {
+      padding: 50px 0;
+      text-align: center;
+      color: #6c7086;
+      font-size: 0.9rem;
+      position: relative;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 59, 59, 0.15), transparent);
+    }
+
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--scrollbar-thumb);
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(255, 59, 59, 0.4);
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    /* Responsive Anpassungen */
+    @media (max-width: 767px) {
+      .floating-element {
+        display: none;
+      }
+
+      .projects-container {
+        height: 60vh;
+      }
+
+      nav {
+        padding: 8px 16px;
+        gap: 16px;
+      }
+
+      nav a {
+        font-size: 0.9rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 6vw, 3rem);
+      }
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Particles Background -->
-  <div id="particles-js"></div>
+  <!-- Ultra-Smooth Background mit reinem Rot -->
+  <canvas class="bg-canvas" id="bg-canvas"></canvas>
+  <div class="gradient-overlay"></div>
+  <div class="floating-element" style="width: 120px; height: 120px; top: 15%; left: 10%;"></div>
+  <div class="floating-element" style="width: 80px; height: 80px; top: 70%; left: 20%;"></div>
+  <div class="floating-element" style="width: 100px; height: 60px; top: 30%; right: 15%; border-radius: 50px;"></div>
 
-  <!-- Navbar -->
+  <!-- Klar strukturierte Navbar -->
   <nav>
     <a href="#projects">Projekte</a>
     <a href="#about">Über mich</a>
     <a href="#contact">Kontakt</a>
   </nav>
 
-  <!-- Hero Section -->
+  <!-- Hero Section (klar und fokussiert) -->
   <section class="hero">
     <div class="container">
       <div class="hero-content">
         <h1>Project ZephTor</h1>
-        <p>Ein moderner Hub für innovative Projekte, bei denen Technologie und Design perfekt verschmelzen.</p>
+        <p>Ein moderner Hub für innovative Projekte – mit Fokus auf Klarheit, Performance und deinem gewünschten Rot-Design.</p>
         <a href="#projects" class="btn">Projekte entdecken</a>
       </div>
     </div>
   </section>
 
-  <!-- Projects Section -->
+  <!-- Projects Section (klar strukturiert) -->
   <section class="projects" id="projects">
     <div class="container">
       <h2>Meine Projekte</h2>
@@ -437,8 +724,9 @@
             </div>
 
             <div class="project-meta">
-              <p><strong>Latest Update:</strong> v2.1.4 (20.04.2026)</p>
-              <p><strong>Uptime:</strong> 99.8%</p>
+              <p><strong>Latest Update:</strong> <span>v2.1.4</span></p>
+              <p><strong>Uptime:</strong> <span>99.8%</span></p>
+              <p><strong>Nutzer:</strong> <span>12.4K</span></p>
             </div>
 
             <div class="project-actions">
@@ -466,8 +754,9 @@
             </div>
 
             <div class="project-meta">
-              <p><strong>Latest Update:</strong> v1.3.0 (18.04.2026)</p>
-              <p><strong>Uptime:</strong> 98.5%</p>
+              <p><strong>Latest Update:</strong> <span>v1.3.0</span></p>
+              <p><strong>Uptime:</strong> <span>98.5%</span></p>
+              <p><strong>Mods:</strong> <span>472</span></p>
             </div>
 
             <div class="project-actions">
@@ -480,18 +769,18 @@
     </div>
   </section>
 
-  <!-- About Section -->
+  <!-- About Section (klar strukturiert) -->
   <section class="about" id="about">
     <div class="container">
       <h2>Über mich</h2>
       <div class="about-content">
-        <p>Ich bin Jayden Wopperer, Gründer von Project ZephTor. Meine Leidenschaft gilt der Entwicklung von Projekten, die Technologie und Design nahtlos verbinden.</p>
-        <p>Auf dieser Seite präsentiere ich meine Arbeiten – von Web-Apps bis zu experimentellen Tools, die durch Innovation und Ästhetik überzeugen.</p>
+        <p>Ich bin Jayden Wopperer, Gründer von Project ZephTor. Meine Leidenschaft gilt der Entwicklung von Projekten, die Technologie und Design nahtlos verbinden – mit deinem gewünschten Rot als Hauptfarbe.</p>
+        <p>Diese Seite vereint klare Struktur, ultra-smoothen Blur und ein modernes Design – alles optimiert für Performance und Ästhetik.</p>
       </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
+  <!-- Contact Section (klar strukturiert) -->
   <section class="contact" id="contact">
     <div class="container">
       <h2>Kontakt</h2>
@@ -503,66 +792,193 @@
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- Footer (einfach und klar) -->
   <footer>
     <div class="container">
       <p>© 2026 Project ZephTor. Alle Rechte vorbehalten.</p>
     </div>
   </footer>
 
-  <!-- Particles.js -->
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <!-- Ultra-Smooth Background Animation (optimiert für reines Rot) -->
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      particlesJS('particles-js', {
-        particles: {
-          number: {
-            value: 50,
-            density: {
-              enable: true,
-              value_area: 800
-            }
-          },
-          color: {
-            value: '#ff3b3b'
-          },
-          shape: {
-            type: 'circle'
-          },
-          opacity: {
-            value: 0.3,
-            random: true
-          },
-          size: {
-            value: 2,
-            random: true
-          },
-          line_linked: {
-            enable: false
-          },
-          move: {
-            enable: true,
-            speed: 0.5,
-            direction: 'none',
-            random: true,
-            straight: false,
-            out_mode: 'out'
-          }
-        },
-        interactivity: {
-          events: {
-            onhover: {
-              enable: true,
-              mode: 'repulse'
-            }
+    // Ultra-smooth Partikel-Animation mit reinem Rot
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Canvas-Größe anpassen
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      createParticles();
+    });
+
+    // Partikel-Klasse mit sanften Bewegungen (nur Rot-Töne)
+    class Particle {
+      constructor() {
+        this.reset();
+        this.baseX = this.x;
+        this.baseY = this.y;
+        this.wobble = Math.random() * 2 + 1;
+      }
+
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 1.2 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 0.2;
+        this.speedY = (Math.random() - 0.5) * 0.2;
+        this.color = `hsl(${Math.random() * 10 + 350}, 90%, 70%)`; // Nur Rot-Töne (350-360)
+        this.opacity = Math.random() * 0.3 + 0.2;
+        this.life = Math.random() * 15000 + 10000;
+        this.createdAt = Date.now();
+      }
+
+      update(mouseX, mouseY) {
+        // Sanfte Bewegung mit Wobble-Effekt
+        this.x += this.speedX + Math.sin(Date.now() * 0.0005 * this.wobble) * 0.08;
+        this.y += this.speedY + Math.cos(Date.now() * 0.0005 * this.wobble) * 0.08;
+
+        // Mausinteraktion mit sanfter Dämpfung
+        if (mouseX && mouseY) {
+          const dx = mouseX - this.x;
+          const dy = mouseY - this.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 120) {
+            const force = 0.03 * (120 - distance) / 120;
+            this.x -= dx * force * 0.01;
+            this.y -= dy * force * 0.01;
           }
         }
-      });
+
+        // Sanftes Abprallen an den Rändern
+        if (this.x < 0) {
+          this.x = 0;
+          this.speedX *= -0.7;
+        } else if (this.x > canvas.width) {
+          this.x = canvas.width;
+          this.speedX *= -0.7;
+        }
+
+        if (this.y < 0) {
+          this.y = 0;
+          this.speedY *= -0.7;
+        } else if (this.y > canvas.height) {
+          this.y = canvas.height;
+          this.speedY *= -0.7;
+        }
+
+        // Partikel neu generieren, wenn es zu alt ist
+        if (Date.now() - this.createdAt > this.life) {
+          this.reset();
+        }
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.globalAlpha = this.opacity;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      }
+    }
+
+    // Partikel erstellen (optimierte Anzahl)
+    let particles = [];
+    function createParticles() {
+      const particleCount = Math.floor((canvas.width * canvas.height) / 12000);
+      particles = [];
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+    }
+    createParticles();
+
+    // Mausposition mit sanfter Interpolation
+    let mouseX = null;
+    let mouseY = null;
+    let targetMouseX = null;
+    let targetMouseY = null;
+
+    canvas.addEventListener('mousemove', (e) => {
+      targetMouseX = e.clientX;
+      targetMouseY = e.clientY;
     });
+
+    canvas.addEventListener('mouseleave', () => {
+      targetMouseX = null;
+      targetMouseY = null;
+    });
+
+    // Animation mit Delta-Time für flüssige Performance
+    let lastTime = 0;
+    function animate(currentTime) {
+      const deltaTime = currentTime - lastTime;
+      lastTime = currentTime;
+
+      // Sanfte Mausposition
+      if (targetMouseX !== null) {
+        if (mouseX === null) {
+          mouseX = targetMouseX;
+          mouseY = targetMouseY;
+        } else {
+          mouseX += (targetMouseX - mouseX) * 0.08 * (deltaTime / 16);
+          mouseY += (targetMouseY - mouseY) * 0.08 * (deltaTime / 16);
+        }
+      } else {
+        mouseX = null;
+        mouseY = null;
+      }
+
+      // Canvas mit Fade-Effekt löschen
+      ctx.fillStyle = 'rgba(5, 5, 5, 0.02)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Partikel aktualisieren und zeichnen
+      particles.forEach(particle => {
+        particle.update(mouseX, mouseY);
+        particle.draw();
+      });
+
+      // Linien zwischen nahen Partikeln zeichnen (nur Rot-Töne)
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 100) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(255, 59, 59, ${0.06 - distance / 1666})`;
+            ctx.lineWidth = 0.4;
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    // Animation starten
+    requestAnimationFrame(animate);
+
+    // Reduced Motion Support
+    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reducedMotionQuery.matches) {
+      cancelAnimationFrame(animate);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+    
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
 <script defer src="/<unique-path>/script.js">
-</script>
-</script>
+  </script>
 </body>
 </html>
