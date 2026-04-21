@@ -3,25 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project ZephTor | Modern Tech Hub</title>
+  <title>Project ZephTor | Clean Tech Hub</title>
   <style>
     :root {
-      /* Reines Rot-Theme (dein gewünschter Ton: #ff3b3b) */
+      /* Reines Rot-Theme (#ff3b3b) */
       --red: #ff3b3b;
       --red-dark: #e03131;
       --red-light: #ff6b6b;
       --surface: #0a0a0a;
       --mantle: #111111;
       --crust: #050505;
-      --glass-bg: rgba(10, 10, 10, 0.4);
-      --glass-border: rgba(255, 59, 59, 0.15);
-      --glass-shadow: 0 8px 25px rgba(255, 59, 59, 0.1);
+      --glass-bg: rgba(10, 10, 10, 0.35);
+      --glass-border: rgba(255, 59, 59, 0.12);
+      --glass-shadow: 0 4px 16px rgba(255, 59, 59, 0.08);
       --border-radius: 12px;
-      --transition: all 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+      --transition: all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
       --max-width: 1200px;
-      --neon-glow: 0 0 10px rgba(255, 59, 59, 0.3);
-      --blur-intensity: 16px;
-      --scrollbar-thumb: rgba(255, 59, 59, 0.3);
+      --neon-glow: 0 0 6px rgba(255, 59, 59, 0.2);
     }
 
     /* Base Styles */
@@ -49,7 +47,7 @@
       padding: 0 20px;
     }
 
-    /* Ultra-Smooth Background mit reinem Rot */
+    /* Minimalistischer Hintergrund mit Staubpartikeln */
     .bg-canvas {
       position: fixed;
       top: 0;
@@ -58,43 +56,6 @@
       height: 100%;
       z-index: -1;
       pointer-events: none;
-    }
-
-    .gradient-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background:
-        radial-gradient(circle at 20% 30%, rgba(255, 59, 59, 0.05) 0%, transparent 60%),
-        radial-gradient(circle at 80% 70%, rgba(255, 59, 59, 0.03) 0%, transparent 60%);
-      z-index: -2;
-      pointer-events: none;
-      animation: gradientPulse 30s infinite alternate ease-in-out;
-    }
-
-    @keyframes gradientPulse {
-      0% { opacity: 0.6; }
-      50% { opacity: 0.8; }
-      100% { opacity: 0.6; }
-    }
-
-    /* Subtile schwebende Elemente (nur Desktop) */
-    .floating-element {
-      position: fixed;
-      z-index: -1;
-      opacity: 0.2;
-      animation: float 25s infinite ease-in-out;
-      filter: blur(4px);
-      background: linear-gradient(145deg, rgba(255, 59, 59, 0.06), rgba(255, 59, 59, 0.03));
-      border-radius: 50%;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      25% { transform: translateY(-12px) rotate(2deg); }
-      75% { transform: translateY(12px) rotate(-2deg); }
     }
 
     /* Klar strukturierte Navbar */
@@ -110,13 +71,13 @@
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
       border-radius: 50px;
-      backdrop-filter: blur(var(--blur-intensity));
+      backdrop-filter: blur(12px);
       box-shadow: var(--glass-shadow);
       transition: var(--transition);
     }
 
     nav:hover {
-      box-shadow: 0 0 20px rgba(255, 59, 59, 0.15);
+      box-shadow: 0 0 15px rgba(255, 59, 59, 0.1);
     }
 
     nav a {
@@ -125,7 +86,6 @@
       transition: var(--transition);
       position: relative;
       padding: 6px 0;
-      text-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
     }
 
     nav a:hover {
@@ -141,7 +101,7 @@
       width: 0;
       height: 1.5px;
       background: linear-gradient(90deg, transparent, var(--red), transparent);
-      transition: width 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+      transition: width 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
     }
 
     nav a:hover::after {
@@ -174,12 +134,6 @@
       background-clip: text;
       color: transparent;
       text-shadow: var(--neon-glow);
-      animation: textPulse 6s infinite alternate;
-    }
-
-    @keyframes textPulse {
-      0% { text-shadow: var(--neon-glow); }
-      100% { text-shadow: 0 0 15px rgba(255, 59, 59, 0.4); }
     }
 
     .hero p {
@@ -194,19 +148,18 @@
     .btn {
       display: inline-block;
       padding: 14px 36px;
-      background: linear-gradient(145deg, rgba(255, 59, 59, 0.15), rgba(255, 59, 59, 0.1));
+      background: linear-gradient(145deg, rgba(255, 59, 59, 0.12), rgba(255, 59, 59, 0.08));
       border: 1px solid var(--glass-border);
       border-radius: 50px;
       color: #ffffff;
       font-weight: 600;
       transition: var(--transition);
-      backdrop-filter: blur(var(--blur-intensity));
+      backdrop-filter: blur(12px);
       box-shadow: var(--glass-shadow);
       text-transform: uppercase;
       letter-spacing: 1px;
       position: relative;
       overflow: hidden;
-      z-index: 1;
     }
 
     .btn::before {
@@ -218,13 +171,12 @@
       height: 100%;
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
       transition: 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
-      z-index: -1;
     }
 
     .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(255, 59, 59, 0.2);
-      background: linear-gradient(145deg, rgba(255, 59, 59, 0.2), rgba(255, 59, 59, 0.15));
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255, 59, 59, 0.15);
+      background: linear-gradient(145deg, rgba(255, 59, 59, 0.18), rgba(255, 59, 59, 0.12));
     }
 
     .btn:hover::before {
@@ -234,7 +186,7 @@
     /* Projects Section (klar strukturiert) */
     .projects {
       padding: 100px 0;
-      background: rgba(10, 10, 10, 0.1);
+      background: rgba(10, 10, 10, 0.05);
       position: relative;
     }
 
@@ -245,7 +197,7 @@
       left: 0;
       right: 0;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 59, 59, 0.2), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 59, 59, 0.1), transparent);
     }
 
     .projects h2 {
@@ -287,7 +239,7 @@
       border: 1px solid var(--glass-border);
       border-radius: var(--border-radius);
       padding: 24px;
-      backdrop-filter: blur(var(--blur-intensity));
+      backdrop-filter: blur(12px);
       box-shadow: var(--glass-shadow);
       transition: var(--transition);
       position: relative;
@@ -295,8 +247,8 @@
     }
 
     .project-frame:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 25px rgba(255, 59, 59, 0.15);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 59, 59, 0.1);
       border-left-color: var(--red-light);
     }
 
@@ -309,7 +261,7 @@
     .project-icon {
       width: 50px;
       height: 50px;
-      background: rgba(255, 59, 59, 0.08);
+      background: rgba(255, 59, 59, 0.06);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -320,8 +272,7 @@
     }
 
     .project-frame:hover .project-icon {
-      background: rgba(255, 59, 59, 0.12);
-      border-color: rgba(255, 59, 59, 0.2);
+      background: rgba(255, 59, 59, 0.1);
     }
 
     .project-title {
@@ -344,8 +295,7 @@
       height: 10px;
       border-radius: 50%;
       margin-right: 8px;
-      position: relative;
-      box-shadow: 0 0 6px rgba(255, 59, 59, 0.4);
+      box-shadow: 0 0 4px rgba(255, 59, 59, 0.3);
     }
 
     .status-indicator.online { background-color: #4CAF50; }
@@ -381,7 +331,7 @@
     .project-btn {
       flex: 1;
       padding: 10px 16px;
-      background: rgba(10, 10, 10, 0.3);
+      background: rgba(10, 10, 10, 0.2);
       border: 1px solid var(--glass-border);
       border-radius: 8px;
       color: var(--red-light);
@@ -390,36 +340,21 @@
       backdrop-filter: blur(8px);
       font-size: 0.9rem;
       cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project-btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, transparent, rgba(255, 59, 59, 0.05), transparent);
-      transform: translateX(-100%);
-      transition: 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
     }
 
     .project-btn:hover {
-      background: rgba(255, 59, 59, 0.15);
+      background: rgba(255, 59, 59, 0.1);
       border-color: rgba(255, 59, 59, 0.2);
       color: #ffffff;
-      transform: translateY(-2px);
-    }
-
-    .project-btn:hover::before {
-      transform: translateX(100%);
     }
 
     .project-btn.primary {
-      background: rgba(255, 59, 59, 0.1);
+      background: rgba(255, 59, 59, 0.08);
       color: #ffffff;
+    }
+
+    .project-btn.primary:hover {
+      background: rgba(255, 59, 59, 0.15);
     }
 
     /* About Section (klar strukturiert) */
@@ -435,7 +370,7 @@
       left: 0;
       right: 0;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 59, 59, 0.2), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 59, 59, 0.1), transparent);
     }
 
     .about h2 {
@@ -465,14 +400,13 @@
       border: 1px solid var(--glass-border);
       border-radius: var(--border-radius);
       padding: 36px;
-      backdrop-filter: blur(var(--blur-intensity));
+      backdrop-filter: blur(12px);
       box-shadow: var(--glass-shadow);
       transition: var(--transition);
     }
 
     .about-content:hover {
-      box-shadow: 0 10px 25px rgba(255, 59, 59, 0.1);
-      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 59, 59, 0.1);
     }
 
     .about-content p {
@@ -486,7 +420,7 @@
     /* Contact Section (klar strukturiert) */
     .contact {
       padding: 100px 0;
-      background: rgba(10, 10, 10, 0.1);
+      background: rgba(10, 10, 10, 0.05);
       position: relative;
     }
 
@@ -497,7 +431,7 @@
       left: 0;
       right: 0;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 59, 59, 0.2), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 59, 59, 0.1), transparent);
     }
 
     .contact h2 {
@@ -527,14 +461,13 @@
       border: 1px solid var(--glass-border);
       border-radius: var(--border-radius);
       padding: 36px;
-      backdrop-filter: blur(var(--blur-intensity));
+      backdrop-filter: blur(12px);
       box-shadow: var(--glass-shadow);
       transition: var(--transition);
     }
 
     .contact-form:hover {
-      box-shadow: 0 10px 25px rgba(255, 59, 59, 0.1);
-      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 59, 59, 0.1);
     }
 
     .contact-form input,
@@ -542,7 +475,7 @@
       width: 100%;
       padding: 14px;
       margin-bottom: 20px;
-      background: rgba(10, 10, 10, 0.3);
+      background: rgba(10, 10, 10, 0.2);
       border: 1px solid var(--glass-border);
       border-radius: var(--border-radius);
       color: #e0e0e0;
@@ -556,8 +489,8 @@
     .contact-form textarea:focus {
       outline: none;
       border-color: var(--red);
-      box-shadow: 0 0 0 2px rgba(255, 59, 59, 0.2);
-      background: rgba(10, 10, 10, 0.4);
+      box-shadow: 0 0 0 2px rgba(255, 59, 59, 0.15);
+      background: rgba(10, 10, 10, 0.3);
     }
 
     .contact-form textarea {
@@ -568,7 +501,7 @@
     .contact-form button {
       width: 100%;
       padding: 14px;
-      background: linear-gradient(145deg, rgba(255, 59, 59, 0.15), rgba(255, 59, 59, 0.1));
+      background: linear-gradient(145deg, rgba(255, 59, 59, 0.12), rgba(255, 59, 59, 0.08));
       border: none;
       border-radius: var(--border-radius);
       color: #ffffff;
@@ -588,15 +521,14 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
       transform: translateX(-100%);
       transition: 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
     }
 
     .contact-form button:hover {
-      background: linear-gradient(145deg, rgba(255, 59, 59, 0.2), rgba(255, 59, 59, 0.15));
-      box-shadow: 0 8px 20px rgba(255, 59, 59, 0.2);
-      transform: translateY(-2px);
+      background: linear-gradient(145deg, rgba(255, 59, 59, 0.18), rgba(255, 59, 59, 0.12));
+      box-shadow: 0 6px 16px rgba(255, 59, 59, 0.15);
     }
 
     .contact-form button:hover::before {
@@ -619,22 +551,17 @@
       left: 0;
       right: 0;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 59, 59, 0.15), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 59, 59, 0.1), transparent);
     }
 
     /* Scrollbar Styling */
     ::-webkit-scrollbar {
-      width: 8px;
+      width: 6px;
     }
 
     ::-webkit-scrollbar-thumb {
-      background-color: var(--scrollbar-thumb);
+      background-color: rgba(255, 59, 59, 0.2);
       border-radius: 10px;
-      transition: background-color 0.3s ease;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background-color: rgba(255, 59, 59, 0.4);
     }
 
     ::-webkit-scrollbar-track {
@@ -643,10 +570,6 @@
 
     /* Responsive Anpassungen */
     @media (max-width: 767px) {
-      .floating-element {
-        display: none;
-      }
-
       .projects-container {
         height: 60vh;
       }
@@ -668,12 +591,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Ultra-Smooth Background mit reinem Rot -->
+  <!-- Staubpartikel-Hintergrund (sehr subtil, wie Staub in der Luft) -->
   <canvas class="bg-canvas" id="bg-canvas"></canvas>
-  <div class="gradient-overlay"></div>
-  <div class="floating-element" style="width: 120px; height: 120px; top: 15%; left: 10%;"></div>
-  <div class="floating-element" style="width: 80px; height: 80px; top: 70%; left: 20%;"></div>
-  <div class="floating-element" style="width: 100px; height: 60px; top: 30%; right: 15%; border-radius: 50px;"></div>
 
   <!-- Klar strukturierte Navbar -->
   <nav>
@@ -687,7 +606,7 @@
     <div class="container">
       <div class="hero-content">
         <h1>Project ZephTor</h1>
-        <p>Ein moderner Hub für innovative Projekte – mit Fokus auf Klarheit, Performance und deinem gewünschten Rot-Design.</p>
+        <p>Ein moderner Hub für innovative Projekte – mit deinem gewünschten Rot-Design und einem sauberen, minimalistischen Hintergrund.</p>
         <a href="#projects" class="btn">Projekte entdecken</a>
       </div>
     </div>
@@ -774,8 +693,8 @@
     <div class="container">
       <h2>Über mich</h2>
       <div class="about-content">
-        <p>Ich bin Jayden Wopperer, Gründer von Project ZephTor. Meine Leidenschaft gilt der Entwicklung von Projekten, die Technologie und Design nahtlos verbinden – mit deinem gewünschten Rot als Hauptfarbe.</p>
-        <p>Diese Seite vereint klare Struktur, ultra-smoothen Blur und ein modernes Design – alles optimiert für Performance und Ästhetik.</p>
+        <p>Ich bin Jayden Wopperer, Gründer von Project ZephTor. Meine Leidenschaft gilt der Entwicklung von Projekten, die Technologie und Design nahtlos verbinden – mit Fokus auf Klarheit und deinem gewünschten Rot-Theme.</p>
+        <p>Diese Seite vereint ein sauberes Design mit subtilen Staubpartikeln im Hintergrund – dezent, aber lebendig.</p>
       </div>
     </div>
   </section>
@@ -799,9 +718,9 @@
     </div>
   </footer>
 
-  <!-- Ultra-Smooth Background Animation (optimiert für reines Rot) -->
+  <!-- Staubpartikel-Script (sehr subtil, wie Staub in der Luft) -->
   <script>
-    // Ultra-smooth Partikel-Animation mit reinem Rot
+    // Ultra-leichtgewichtige Staubpartikel-Animation
     const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
 
@@ -811,49 +730,29 @@
       canvas.height = window.innerHeight;
     }
     resizeCanvas();
-    window.addEventListener('resize', () => {
-      resizeCanvas();
-      createParticles();
-    });
+    window.addEventListener('resize', resizeCanvas);
 
-    // Partikel-Klasse mit sanften Bewegungen (nur Rot-Töne)
-    class Particle {
+    // Staubpartikel-Klasse (sehr einfach und performant)
+    class DustParticle {
       constructor() {
         this.reset();
-        this.baseX = this.x;
-        this.baseY = this.y;
         this.wobble = Math.random() * 2 + 1;
       }
 
       reset() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 1.2 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.2;
-        this.speedY = (Math.random() - 0.5) * 0.2;
-        this.color = `hsl(${Math.random() * 10 + 350}, 90%, 70%)`; // Nur Rot-Töne (350-360)
-        this.opacity = Math.random() * 0.3 + 0.2;
-        this.life = Math.random() * 15000 + 10000;
-        this.createdAt = Date.now();
+        this.size = Math.random() * 0.8 + 0.3;
+        this.speedX = (Math.random() - 0.5) * 0.1;
+        this.speedY = (Math.random() - 0.5) * 0.1;
+        this.opacity = Math.random() * 0.3 + 0.1;
+        this.color = `rgba(255, 150, 150, ${this.opacity})`; // Sehr subtiles Rot
       }
 
-      update(mouseX, mouseY) {
-        // Sanfte Bewegung mit Wobble-Effekt
-        this.x += this.speedX + Math.sin(Date.now() * 0.0005 * this.wobble) * 0.08;
-        this.y += this.speedY + Math.cos(Date.now() * 0.0005 * this.wobble) * 0.08;
-
-        // Mausinteraktion mit sanfter Dämpfung
-        if (mouseX && mouseY) {
-          const dx = mouseX - this.x;
-          const dy = mouseY - this.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < 120) {
-            const force = 0.03 * (120 - distance) / 120;
-            this.x -= dx * force * 0.01;
-            this.y -= dy * force * 0.01;
-          }
-        }
+      update() {
+        // Langsame, sanfte Bewegung mit leichtem Wobble
+        this.x += this.speedX + Math.sin(Date.now() * 0.0003 * this.wobble) * 0.05;
+        this.y += this.speedY + Math.cos(Date.now() * 0.0003 * this.wobble) * 0.05;
 
         // Sanftes Abprallen an den Rändern
         if (this.x < 0) {
@@ -871,49 +770,21 @@
           this.y = canvas.height;
           this.speedY *= -0.7;
         }
-
-        // Partikel neu generieren, wenn es zu alt ist
-        if (Date.now() - this.createdAt > this.life) {
-          this.reset();
-        }
       }
 
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fillStyle = this.color;
-        ctx.globalAlpha = this.opacity;
         ctx.fill();
-        ctx.globalAlpha = 1;
       }
     }
 
-    // Partikel erstellen (optimierte Anzahl)
-    let particles = [];
-    function createParticles() {
-      const particleCount = Math.floor((canvas.width * canvas.height) / 12000);
-      particles = [];
-      for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
-      }
+    // Nur 30 Staubpartikel (sehr sparsam)
+    const particles = [];
+    for (let i = 0; i < 30; i++) {
+      particles.push(new DustParticle());
     }
-    createParticles();
-
-    // Mausposition mit sanfter Interpolation
-    let mouseX = null;
-    let mouseY = null;
-    let targetMouseX = null;
-    let targetMouseY = null;
-
-    canvas.addEventListener('mousemove', (e) => {
-      targetMouseX = e.clientX;
-      targetMouseY = e.clientY;
-    });
-
-    canvas.addEventListener('mouseleave', () => {
-      targetMouseX = null;
-      targetMouseY = null;
-    });
 
     // Animation mit Delta-Time für flüssige Performance
     let lastTime = 0;
@@ -921,53 +792,21 @@
       const deltaTime = currentTime - lastTime;
       lastTime = currentTime;
 
-      // Sanfte Mausposition
-      if (targetMouseX !== null) {
-        if (mouseX === null) {
-          mouseX = targetMouseX;
-          mouseY = targetMouseY;
-        } else {
-          mouseX += (targetMouseX - mouseX) * 0.08 * (deltaTime / 16);
-          mouseY += (targetMouseY - mouseY) * 0.08 * (deltaTime / 16);
-        }
-      } else {
-        mouseX = null;
-        mouseY = null;
-      }
-
-      // Canvas mit Fade-Effekt löschen
-      ctx.fillStyle = 'rgba(5, 5, 5, 0.02)';
+      // Canvas mit sehr subtilem Fade löschen
+      ctx.fillStyle = 'rgba(5, 5, 5, 0.01)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // Partikel aktualisieren und zeichnen
       particles.forEach(particle => {
-        particle.update(mouseX, mouseY);
+        particle.update();
         particle.draw();
       });
-
-      // Linien zwischen nahen Partikeln zeichnen (nur Rot-Töne)
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < 100) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(255, 59, 59, ${0.06 - distance / 1666})`;
-            ctx.lineWidth = 0.4;
-            ctx.stroke();
-          }
-        }
-      }
 
       requestAnimationFrame(animate);
     }
 
     // Animation starten
-    requestAnimationFrame(animate);
+    animate(0);
 
     // Reduced Motion Support
     const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -975,10 +814,6 @@
       cancelAnimationFrame(animate);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
-    
-  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-</script>
-<script defer src="/<unique-path>/script.js">
   </script>
 </body>
 </html>
