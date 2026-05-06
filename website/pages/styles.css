@@ -1,0 +1,116 @@
+/* dashboard.css */
+
+/* Vollflächiger Hintergrund mit diagonalem Farbverlauf */
+:root {
+  --bg-start: #0046ea; /* dunkel */
+  --bg-mid:   #0ea5e9; /* blau */
+  --bg-end:   #7c3aed; /* lila */
+}
+
+/* Grundlayout */
+html, body {
+  height:100%;
+  margin:0;
+  font-family: Inter, Roboto, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial;
+  color: #e6eef8;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* Gradient-Background (diagonal) */
+.gradient-bg {
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:2rem;
+  background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-mid) 45%, var(--bg-end) 100%);
+  background-attachment: fixed; /* optional: parallax-like effect */
+  background-size: cover;
+}
+
+/* Leichtes Overlay für bessere Lesbarkeit */
+.gradient-bg::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.30));
+  pointer-events:none;
+  z-index:0;
+}
+
+/* Container für Inhalte */
+.container{
+  position:relative; /* über dem Overlay */
+  z-index:1;
+  width:100%;
+  max-width:1100px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius:12px;
+  padding:2rem;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+  backdrop-filter: blur(6px);
+}
+
+/* Beispiel-Header */
+.hdr{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  margin-bottom:1.25rem;
+}
+.logo{
+  width:48px;
+  height:48px;
+  border-radius:8px;
+  background: linear-gradient(45deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  color:#fff;
+}
+
+/* Karten-Grid */
+.grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap:1rem;
+}
+
+/* Beispiel-Karte */
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border:1px solid rgba(255,255,255,0.04);
+  border-radius:10px;
+  padding:1rem;
+  color:inherit;
+}
+.card h3{
+  margin:0 0 .5rem 0;
+  font-size:1rem;
+}
+.card p{
+  margin:0;
+  font-size:.9rem;
+  color: rgba(230,238,248,0.85);
+}
+
+/* Button-Style */
+.btn{
+  display:inline-block;
+  padding:.55rem .9rem;
+  border-radius:8px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+  border:1px solid rgba(255,255,255,0.08);
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+}
+
+/* Responsive tweaks */
+@media (max-width:600px){
+  .container{ padding:1rem; border-radius:8px; }
+  .hdr{ gap:.6rem; }
+}

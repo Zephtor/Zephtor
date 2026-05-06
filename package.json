@@ -1,6 +1,16 @@
 {
   "dependencies": {
+    "@discordjs/rest": "^2.6.1",
+    "@supabase/ssr": "^0.10.2",
+    "@supabase/supabase-js": "^2.105.3",
     "@vercel/analytics": "^2.0.1",
-    "vercel": "^51.8.0"
+    "discord": "^0.8.2",
+    "discord-api-types": "^0.38.47",
+    "discord.js": "^14.26.4",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14",
+    "vercel": "^51.8.0",
+    "ws": "^8.20.0"
   }
 }

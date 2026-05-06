@@ -302,6 +302,9 @@
     .status-indicator.dnd { background-color: #ff9800; }
     .status-indicator.maintenance { background-color: #2196F3; }
     .status-indicator.offline { background-color: #607d8b; }
+    .status-indicator.dev { background-color: #7c21f3; }
+    .status-indicator.crashed { background-color: #f30000; }
+
 
     .project-meta {
       margin-bottom: 18px;
@@ -587,6 +590,28 @@
         font-size: clamp(2rem, 6vw, 3rem);
       }
     }
+
+    /* status.css */
+      .dc-status-card { display: inline-flex; align-items: center; gap:12px; padding:8px 12px; border-radius:10px; background:transparent; }
+      .dc-status-dot { width:16px; height:16px; border-radius:50%; transition: all 300ms ease; box-shadow: 0 0 0 rgba(0,0,0,0); }
+      .dc-status-label { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial; color: #e6eef8; font-weight:600; font-size:14px; }
+      .dc-status-meta { display:block; font-size:12px; color:#9fb0c8; margin-top:4px; }
+
+      /* online: solid green */
+      .dc-online { background: #2ee6a6; box-shadow: 0 0 10px rgba(46,230,166,0.25); transform: scale(1); animation: none; }
+
+      /* offline: grey pulsing */
+      .dc-offline { background: #9aa4b2; box-shadow: 0 0 0 rgba(154,164,178,0.0); animation: dc-pulse 1.6s infinite ease-in-out; }
+      @keyframes dc-pulse {
+        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(154,164,178,0.45); }
+        50% { transform: scale(1.14); box-shadow: 0 0 18px 6px rgba(154,164,178,0.08); }
+        100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(154,164,178,0.0); }
+      }
+
+      /* Internal CSS example */
+        .status.uppercase {
+          text-transform: uppercase;
+        }   
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -636,10 +661,9 @@
               </div>
               <h1 class="project-title">DC Bot</h1>
             </div>
-
             <div class="project-status">
-              <div class="status-indicator online"></div>
-              <span>Status: <strong>Online</strong></span>
+              <div class="status-indicator dev"></div> <!-- status-indicator (dnd/maintenance/offline/online/dev/crashed)-->
+              <span>Status: <strong id="status"></strong></span>
             </div>
 
             <div class="project-meta">
@@ -650,7 +674,7 @@
 
             <div class="project-actions">
               <button class="project-btn primary">View More</button>
-              <button class="project-btn">Dashboard</button>
+              <button class="project-btn" onclick="window.location.href='./website/pages/dashboard.html'">Dashboard</button></a>
             </div>
           </div>
 
@@ -698,7 +722,8 @@
       </div>
     </div>
   </section>
-
+  <h1> adofl</h1>
+ 
   <!-- Contact Section (klar strukturiert) -->
   <section class="contact" id="contact">
     <div class="container">
@@ -711,6 +736,8 @@
     </div>
   </section>
 
+ <div id="status">lade…</div>
+ <div id="activity"></div>
   <!-- Footer (einfach und klar) -->
   <footer>
     <div class="container">
@@ -719,7 +746,74 @@
   </footer>
 
   <!-- Staubpartikel-Script (sehr subtil, wie Staub in der Luft) -->
+  <script src="./website/script/api.js" defer></script>
+  <script src="./website/script/status.js" defer></script>
   <script>
+  // WebSocket with fallback
+  let ws;
+  const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+  try {
+    ws = new WebSocket(protocol + '//' + location.host);
+    ws.addEventListener('message', ev => {
+      try { const s = JSON.parse(ev.data); applyStatus(s); } catch(e){}
+    });
+    ws.addEventListener('error', () => { ws.close(); ws = null; startPolling(); });
+    ws.addEventListener('close', () => { if (!ws || ws.readyState !== WebSocket.OPEN) startPolling(); });
+  } catch(e){ startPolling(); }
+
+  function startPolling(){
+    async function fetchStatus(){
+      try {
+        const res = await fetch('/bot-status', { cache: 'no-store' });
+        if (!res.ok) throw new Error('fetch failed');
+        const s = await res.json();
+        applyStatus(s);
+      } catch(e){
+        applyStatus({ online:false, status:'offline', updatedAt: new Date().toISOString() });
+      }
+    }
+    fetchStatus();
+    setInterval(fetchStatus, 15000);
+  };
+
+    const statusEl = document.getElementById('status');
+    const activityEl = document.getElementById('activity');
+
+    // Option: WebSocket (realtime) mit Fallback auf polling
+    try {
+      ws = new WebSocket((location.protocol === 'https:' ? 'wss:' : 'ws:') + '//' + location.host);
+      ws.addEventListener('message', ev => {
+        const s = JSON.parse(ev.data);
+        statusEl.textContent = s.status + (s.online ? ' ' : '');
+        activityEl.textContent = s.activity || '—';
+      });
+      ws.addEventListener('open', () => console.log('WS connected'));
+      ws.addEventListener('error', () => { ws = null; startPolling(); });
+    } catch (e) { startPolling(); }
+
+
+    function startPolling() {
+      async function fetchStatus() {
+        try {
+          const res = await fetch('/bot-status');
+          const s = await res.json();
+          statusEl.textContent = s.status + (s.online ? '' : '');
+          activityEl.textContent = s.activity || '—';
+        } catch (e) { statusEl.textContent = 'error'; }
+      }
+      fetchStatus();
+      setInterval(fetchStatus, 150);
+    }
+
+
+    // Beim Empfang einer Nachricht (WebSocket) oder Polling-Antwort
+    ws.addEventListener('message', ev => {
+      const s = JSON.parse(ev.data);
+      updateBotStatus(s);
+    });
+
+
+
     // Ultra-leichtgewichtige Staubpartikel-Animation
     const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
