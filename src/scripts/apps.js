@@ -8,9 +8,9 @@ const APPS = [
         tags: ['Anime', 'AniList', 'Watchlist', 'Bewertungen'],
         version: '0.1.0',
         releases: [{
-            version: '0.1.0',
-            date: '05.10.2026',
-            notes: ['Erste öffentliche Version von AniPager.'],
+            version: '0.2.0',
+            date: '11.11.2026',
+            notes: ['Überarbeitete Version von AniPager.'],
             files: [{
                 filename: 'AniPager.flatpak',
                 path: '../assets/downloads/AniPager.flatpak',
