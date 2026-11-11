@@ -16,12 +16,12 @@ const APPS = [
                 path: '../assets/downloads/ZephTor-MC-Launcher.flatpak',
                 label: 'ZephTor MC Launcher für Linux (Flatpak)',
                 size: '1,2 MB',
-                sha256: ''
+                sha256: 'bd3ed6f34219b89a2e6296b2781e2180e4f55336d57bff2bb3642908a76aaec8'
             }]
         }],
         platform: 'Linux · x86_64',
         description: 'Spiele Minecraft Java Edition mit einem eigenständigen, ressourcenschonenden Launcher. Lade offizielle Vanilla-Versionen herunter; PrismLauncher bleibt optional. Java und eine öffentliche Microsoft-App-ID sind nicht enthalten.',
-        banner: '../assets/showcase/mc-launcher.png',
+        banner: '../assets/showcase/mc-launcher.svg',
         featured: true
     },
     {

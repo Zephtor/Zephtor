@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1040" viewBox="0 0 1600 1040" fill="none">
+  <defs>
+    <linearGradient id="backdrop" x1="120" y1="36" x2="1468" y2="1002" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#202127"/>
+      <stop offset=".52" stop-color="#0D0E12"/>
+      <stop offset="1" stop-color="#260F14"/>
+    </linearGradient>
+    <linearGradient id="window" x1="200" y1="100" x2="1400" y2="920" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#15161B"/>
+      <stop offset="1" stop-color="#0D0E12"/>
+    </linearGradient>
+    <linearGradient id="hero" x1="180" y1="230" x2="1380" y2="478" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#202127"/>
+      <stop offset=".64" stop-color="#17181D"/>
+      <stop offset="1" stop-color="#35141B"/>
+    </linearGradient>
+    <linearGradient id="cube" x1="1122" y1="246" x2="1309" y2="445" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF7580"/>
+      <stop offset="1" stop-color="#C92539"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="matrix(460 310 -290 430 1328 211)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E13745" stop-opacity=".34"/>
+      <stop offset="1" stop-color="#E13745" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="30" y="34" width="1540" height="964" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="26"/>
+    </filter>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
+      <path d="M42 0H0V42" stroke="#FF5966" stroke-opacity=".055"/>
+    </pattern>
+    <clipPath id="window-clip">
+      <rect x="82" y="72" width="1436" height="862" rx="26"/>
+    </clipPath>
+  </defs>
+
+  <rect width="1600" height="1040" rx="34" fill="url(#backdrop)"/>
+  <rect width="1600" height="1040" rx="34" fill="url(#grid)"/>
+  <ellipse cx="802" cy="948" rx="574" ry="33" fill="#000" fill-opacity=".72" filter="url(#shadow)"/>
+  <g clip-path="url(#window-clip)">
+    <rect x="82" y="72" width="1436" height="862" rx="26" fill="url(#window)"/>
+    <rect x="82" y="72" width="1436" height="862" fill="url(#glow)"/>
+    <rect x="82" y="72" width="1436" height="862" fill="url(#grid)"/>
+
+    <rect x="82" y="72" width="1436" height="82" fill="#101116"/>
+    <path d="M82 153.5H1518" stroke="#FFF" stroke-opacity=".08"/>
+    <rect x="119" y="91" width="44" height="44" rx="14" fill="#191A20" stroke="#FF5966" stroke-opacity=".7"/>
+    <path d="M131 102h21l-13 22h-8l13-16h-13v-6Z" fill="#FF5966"/>
+    <text x="179" y="111" fill="#F4F3F2" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="800" letter-spacing="1.4">ZEPHTOR MC LAUNCHER</text>
+    <text x="179" y="130" fill="#9295A1" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="1.4">DEIN MINECRAFT. DEIN SETUP.</text>
+    <circle cx="1289" cy="113" r="5" fill="#73D19C"/>
+    <text x="1303" y="117" fill="#C5C6CC" font-family="Inter,Arial,sans-serif" font-size="12">Vanilla-Launcher bereit</text>
+    <circle cx="1453" cy="112" r="5" fill="#50515A"/>
+    <circle cx="1475" cy="112" r="5" fill="#50515A"/>
+    <circle cx="1497" cy="112" r="5" fill="#E13745"/>
+
+    <rect x="120" y="187" width="1360" height="296" rx="24" fill="url(#hero)" stroke="#FF5966" stroke-opacity=".28"/>
+    <rect x="120" y="187" width="1360" height="296" rx="24" fill="url(#glow)"/>
+    <text x="166" y="232" fill="#FF7580" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="800" letter-spacing="2">MINECRAFT JAVA EDITION  /  RUST + GTK4</text>
+    <text x="164" y="302" fill="#F7F6F4" font-family="Inter,Arial,sans-serif" font-size="51" font-weight="800" letter-spacing="-2">Deine Welten.</text>
+    <text x="164" y="359" fill="#F7F6F4" font-family="Inter,Arial,sans-serif" font-size="51" font-weight="800" letter-spacing="-2">Ein Klick.</text>
+    <text x="166" y="398" fill="#B7B9C3" font-family="Inter,Arial,sans-serif" font-size="15">Eigenständiger Launcher. PrismLauncher bleibt optional.</text>
+    <text x="166" y="423" fill="#B7B9C3" font-family="Inter,Arial,sans-serif" font-size="15">Offizielle Vanilla-Versionen laden, installieren und starten.</text>
+    <rect x="166" y="441" width="210" height="45" rx="12" fill="#D93849"/>
+    <text x="190" y="469" fill="#FFF" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="750">Minecraft installieren</text>
+    <rect x="388" y="441" width="170" height="45" rx="12" fill="#191A20" stroke="#FFF" stroke-opacity=".14"/>
+    <text x="411" y="469" fill="#E8E9ED" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700">Standalone starten</text>
+
+    <g opacity=".95">
+      <path d="m1222 258 104 60-104 60-104-60 104-60Z" fill="#FF7580"/>
+      <path d="m1118 318 104 60v120l-104-60V318Z" fill="#A82032"/>
+      <path d="m1326 318-104 60v120l104-60V318Z" fill="url(#cube)"/>
+      <path d="m1222 288 53 30-53 30-53-30 53-30Z" fill="#FFD4D7" fill-opacity=".65"/>
+      <path d="m1150 355 40 23v50l-40-23v-50Z" fill="#E64052" fill-opacity=".8"/>
+      <path d="m1294 355-40 23v50l40-23v-50Z" fill="#FF9AA1" fill-opacity=".7"/>
+      <path d="M1078 430h288" stroke="#FF5966" stroke-opacity=".24"/>
+      <path d="M1100 451h244" stroke="#FF5966" stroke-opacity=".14"/>
+    </g>
+    <circle cx="1361" cy="242" r="3" fill="#FF7580"/>
+    <circle cx="1073" cy="290" r="4" fill="#FF7580" fill-opacity=".6"/>
+    <circle cx="1394" cy="382" r="3" fill="#FF7580" fill-opacity=".7"/>
+
+    <text x="120" y="538" fill="#F3F4F7" font-family="Inter,Arial,sans-serif" font-size="22" font-weight="750">Deine Instanzen</text>
+    <rect x="907" y="511" width="194" height="40" rx="11" fill="#14151B" stroke="#FFF" stroke-opacity=".1"/>
+    <text x="927" y="536" fill="#777A85" font-family="Inter,Arial,sans-serif" font-size="12">Instanzen filtern</text>
+    <rect x="1112" y="511" width="124" height="40" rx="11" fill="#191A20" stroke="#FFF" stroke-opacity=".13"/>
+    <text x="1135" y="536" fill="#E8E9ED" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="650">Aktualisieren</text>
+
+    <rect x="120" y="571" width="1090" height="300" rx="20" fill="#111217" stroke="#FFF" stroke-opacity=".09"/>
+    <rect x="149" y="602" width="54" height="54" rx="16" fill="#E13745" fill-opacity=".15"/>
+    <path d="m176 613 16 9v18l-16 9-16-9v-18l16-9Z" stroke="#FF6874" stroke-width="2"/>
+    <path d="m160 622 16 9 16-9m-16 9v18" stroke="#FF6874" stroke-width="2"/>
+    <text x="222" y="625" fill="#F3F4F7" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="750">Noch keine Instanzen</text>
+    <text x="222" y="650" fill="#9295A1" font-family="Inter,Arial,sans-serif" font-size="12">Installiere eine Vanilla-Version, um dein Spiel zu starten.</text>
+    <path d="M149 682H1180" stroke="#FFF" stroke-opacity=".08"/>
+    <rect x="149" y="711" width="1016" height="116" rx="16" fill="#191A20"/>
+    <circle cx="199" cy="769" r="24" fill="#E13745" fill-opacity=".16"/>
+    <path d="M191 757v24l19-12-19-12Z" fill="#FF6874"/>
+    <text x="240" y="754" fill="#E8E9ED" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700">Direkt zu Minecraft</text>
+    <text x="240" y="780" fill="#9295A1" font-family="Inter,Arial,sans-serif" font-size="12">Versionen werden sicher von Mojang geladen und geprüft.</text>
+    <rect x="905" y="743" width="230" height="43" rx="12" fill="#D93849"/>
+    <text x="936" y="770" fill="#FFF" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="750">Vanilla installieren  →</text>
+
+    <rect x="1230" y="571" width="250" height="300" rx="20" fill="#111217" stroke="#FFF" stroke-opacity=".09"/>
+    <text x="1257" y="612" fill="#F3F4F7" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="750">Launcher-Verbindung</text>
+    <circle cx="1262" cy="646" r="4" fill="#73D19C"/>
+    <text x="1276" y="650" fill="#9295A1" font-family="Inter,Arial,sans-serif" font-size="11">Standalone · Prism optional</text>
+    <rect x="1257" y="675" width="196" height="39" rx="11" fill="#191A20" stroke="#FFF" stroke-opacity=".12"/>
+    <text x="1273" y="699" fill="#D2D3D8" font-family="Inter,Arial,sans-serif" font-size="11">Prism-Ordner importieren</text>
+    <path d="M1257 735H1453" stroke="#FFF" stroke-opacity=".1"/>
+    <text x="1257" y="766" fill="#F3F4F7" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="750">Microsoft-Anmeldung</text>
+    <rect x="1257" y="783" width="196" height="37" rx="10" fill="#0C0D11" stroke="#FFF" stroke-opacity=".12"/>
+    <text x="1271" y="806" fill="#777A85" font-family="Inter,Arial,sans-serif" font-size="10">Öffentliche Microsoft-App-ID</text>
+    <rect x="1257" y="830" width="196" height="30" rx="9" fill="#191A20" stroke="#FFF" stroke-opacity=".12"/>
+    <text x="1309" y="849" fill="#E8E9ED" font-family="Inter,Arial,sans-serif" font-size="10" font-weight="700">App-ID speichern</text>
+  </g>
+  <rect x="82.5" y="72.5" width="1435" height="861" rx="26" stroke="#FFF" stroke-opacity=".15"/>
+  <text x="130" y="984" fill="#A0A2AA" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="1.5">ZEPHTOR MC LAUNCHER</text>
+  <text x="1470" y="984" text-anchor="end" fill="#777A85" font-family="Inter,Arial,sans-serif" font-size="12">LIGHTWEIGHT  ·  LINUX  ·  OPEN SOURCE</text>
+</svg>
