@@ -2,6 +2,9 @@
 set -euo pipefail
 
 root="$(cd -- "$(dirname -- "$0")" && pwd)"
+if [ -x "$HOME/.cargo/bin/cargo" ]; then
+    PATH="$HOME/.cargo/bin:$PATH"
+fi
 app_id="org.zephtor.MCLauncher"
 manifest="$root/org.zephtor.MCLauncher.yml"
 stage="$root/.flatpak-src"
@@ -37,6 +40,6 @@ cp "$root/launcher-config.example" "$root/org.zephtor.MCLauncher.desktop" \
 mkdir -p "$stage/assets"
 cp "$root/assets/launcher-icon.svg" "$stage/assets/"
 
-flatpak-builder --force-clean --repo="$repo" "$build_dir" "$manifest"
+flatpak-builder --force-clean --state-dir="$tmp/flatpak-builder" --repo="$repo" "$build_dir" "$manifest"
 flatpak build-bundle "$repo" "$bundle" "$app_id" stable
 printf 'Flatpak erstellt: %s\n' "$bundle"

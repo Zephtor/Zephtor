@@ -808,10 +808,10 @@ fn authenticate_minecraft(notify: &dyn Fn(&str)) -> Result<MinecraftAccount, Str
 }
 
 fn read_msa_client_id() -> Option<String> {
-    if let Some(value) = config_value("ZEPHTOR_MSA_CLIENT_ID") {
-        if !value.trim().is_empty() {
-            return Some(value.trim().to_owned());
-        }
+    if let Some(value) = config_value("ZEPHTOR_MSA_CLIENT_ID")
+        && !value.trim().is_empty()
+    {
+        return Some(value.trim().to_owned());
     }
     let path = std::env::var_os("XDG_CONFIG_HOME")
         .map(PathBuf::from)
