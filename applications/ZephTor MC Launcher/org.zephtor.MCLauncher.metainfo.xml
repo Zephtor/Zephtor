@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.zephtor.MCLauncher</id>
+  <name>ZephTor MC Launcher</name>
+  <summary>Leichter, eigenständiger Minecraft-Launcher</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <description>
+    <p>Installiert offizielle Minecraft-Java-Versionen und startet sie direkt. PrismLauncher kann optional für vorhandene Instanzen verwendet werden.</p>
+  </description>
+  <launchable type="desktop-id">org.zephtor.MCLauncher.desktop</launchable>
+  <url type="homepage">https://github.com/Zephtor/Zephtor</url>
+  <releases>
+    <release version="0.1.0" date="2026-11-11"/>
+  </releases>
+  <provides>
+    <binary>zephtor-mc-launcher</binary>
+  </provides>
+</component>

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=ZephTor MC Launcher
+Comment=Eigenständiger Minecraft-Launcher mit optionaler Prism-Kompatibilität
+Exec=zephtor-mc-launcher
+Icon=org.zephtor.MCLauncher
+Terminal=false
+Categories=Game;
+StartupNotify=true

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#201e20"/><stop offset="1" stop-color="#0e1013"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="580" y1="160" x2="1060" y2="620" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#725a50"/><stop offset=".45" stop-color="#3d4143"/><stop offset="1" stop-color="#181c20"/>
+    </linearGradient>
+    <linearGradient id="sun" x1="815" y1="230" x2="1000" y2="418" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffdfae"/><stop offset="1" stop-color="#dc976f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" rx="34" fill="url(#bg)"/>
+  <rect x="28" y="28" width="1144" height="664" rx="22" fill="#141519" stroke="#ffffff" stroke-opacity=".12"/>
+  <path d="M50 28h1100a22 22 0 0 1 22 22v52H28V50a22 22 0 0 1 22-22Z" fill="#202126"/>
+  <circle cx="56" cy="66" r="6" fill="#fa6571"/><circle cx="78" cy="66" r="6" fill="#f3b763"/><circle cx="100" cy="66" r="6" fill="#71c99b"/>
+  <text x="132" y="72" fill="#f7f4ed" font-family="sans-serif" font-size="18" font-weight="700">AOD Studio</text>
+  <rect x="963" y="46" width="91" height="38" rx="10" fill="#35363c"/>
+  <text x="986" y="70" fill="#d5d3d0" font-family="sans-serif" font-size="12">Preview</text>
+  <rect x="1065" y="46" width="80" height="38" rx="10" fill="#fa654e"/>
+  <text x="1083" y="70" fill="#fff" font-family="sans-serif" font-size="12" font-weight="700">Apply</text>
+  <rect x="28" y="102" width="196" height="590" fill="#191a1f"/>
+  <text x="50" y="143" fill="#9b9ba0" font-family="sans-serif" font-size="11" font-weight="700" letter-spacing="2">WORKSPACE</text>
+  <rect x="44" y="161" width="164" height="40" rx="10" fill="#303036"/>
+  <text x="66" y="186" fill="#f2f0ec" font-family="sans-serif" font-size="13" font-weight="600">◉  My AOD Theme</text>
+  <text x="50" y="246" fill="#9b9ba0" font-family="sans-serif" font-size="11" font-weight="700" letter-spacing="2">FILES</text>
+  <text x="64" y="283" fill="#fa987f" font-family="monospace" font-size="13">◇  index.html</text>
+  <text x="64" y="318" fill="#cbc9c4" font-family="monospace" font-size="13">◇  style.css</text>
+  <text x="64" y="353" fill="#cbc9c4" font-family="monospace" font-size="13">◇  script.js</text>
+  <path d="M44 380h164" stroke="#ffffff" stroke-opacity=".1"/>
+  <text x="50" y="416" fill="#9b9ba0" font-family="sans-serif" font-size="11" font-weight="700" letter-spacing="2">DISPLAY</text>
+  <text x="50" y="451" fill="#bdbbc0" font-family="sans-serif" font-size="12">Resolution</text>
+  <rect x="50" y="463" width="152" height="35" rx="8" fill="#24252a" stroke="#ffffff" stroke-opacity=".09"/>
+  <text x="64" y="486" fill="#ebe8e3" font-family="sans-serif" font-size="11">1920 × 1080</text>
+  <text x="50" y="538" fill="#bdbbc0" font-family="sans-serif" font-size="12">Refresh interval</text>
+  <rect x="50" y="550" width="152" height="35" rx="8" fill="#24252a" stroke="#ffffff" stroke-opacity=".09"/>
+  <text x="64" y="573" fill="#ebe8e3" font-family="sans-serif" font-size="11">Every 30 seconds</text>
+  <text x="258" y="143" fill="#9b9ba0" font-family="sans-serif" font-size="12">Live preview</text>
+  <rect x="258" y="164" width="516" height="454" rx="17" fill="#24252b" stroke="#ffffff" stroke-opacity=".1"/>
+  <rect x="274" y="180" width="484" height="422" rx="11" fill="url(#screen)"/>
+  <circle cx="656" cy="292" r="62" fill="url(#sun)" fill-opacity=".94"/>
+  <path d="M274 435c74-88 132-95 204-38 70 55 102 26 171-35 42-37 74-44 109-24v264H274V435Z" fill="#4a5350"/>
+  <path d="M274 488c86-59 138-40 211 9 73 49 145 36 273-37v142H274V488Z" fill="#293437"/>
+  <path d="M274 545c91-34 180-4 254 18 77 23 147 4 230-34v73H274v-57Z" fill="#1e292d"/>
+  <text x="316" y="266" fill="#fff8e9" font-family="sans-serif" font-size="15" letter-spacing="3">MONDAY, NOVEMBER 09</text>
+  <text x="312" y="369" fill="#fffaf0" font-family="sans-serif" font-size="78" font-weight="300" letter-spacing="-5">09:41</text>
+  <text x="319" y="401" fill="#fff3df" font-family="sans-serif" font-size="15">Good evening, Alex.</text>
+  <rect x="311" y="529" width="155" height="47" rx="12" fill="#101315" fill-opacity=".53" stroke="#ffffff" stroke-opacity=".2"/>
+  <text x="329" y="549" fill="#e7e4dc" font-family="sans-serif" font-size="10">WEATHER</text>
+  <text x="329" y="568" fill="#fff8e9" font-family="sans-serif" font-size="15">18°  ·  Clear</text>
+  <rect x="481" y="529" width="155" height="47" rx="12" fill="#101315" fill-opacity=".53" stroke="#ffffff" stroke-opacity=".2"/>
+  <text x="499" y="549" fill="#e7e4dc" font-family="sans-serif" font-size="10">NEXT EVENT</text>
+  <text x="499" y="568" fill="#fff8e9" font-family="sans-serif" font-size="13">Design review · 11:00</text>
+  <rect x="800" y="164" width="344" height="454" rx="16" fill="#1b1c21" stroke="#ffffff" stroke-opacity=".1"/>
+  <text x="824" y="202" fill="#f5f2ec" font-family="sans-serif" font-size="15" font-weight="700">Code editor</text>
+  <rect x="816" y="222" width="312" height="1" fill="#ffffff" fill-opacity=".1"/>
+  <text x="824" y="257" fill="#777982" font-family="monospace" font-size="12">1</text>
+  <text x="850" y="257" fill="#fa987f" font-family="monospace" font-size="12">const</text>
+  <text x="890" y="257" fill="#e9e5db" font-family="monospace" font-size="12"> clock = document</text>
+  <text x="850" y="279" fill="#e9e5db" font-family="monospace" font-size="12">  .querySelector(</text>
+  <text x="962" y="279" fill="#d9b477" font-family="monospace" font-size="12">'#clock'</text>
+  <text x="1021" y="279" fill="#e9e5db" font-family="monospace" font-size="12">);</text>
+  <text x="824" y="323" fill="#777982" font-family="monospace" font-size="12">2</text>
+  <text x="850" y="323" fill="#fa987f" font-family="monospace" font-size="12">function</text>
+  <text x="912" y="323" fill="#a7bb91" font-family="monospace" font-size="12">updateTime</text>
+  <text x="986" y="323" fill="#e9e5db" font-family="monospace" font-size="12">() {</text>
+  <text x="824" y="345" fill="#777982" font-family="monospace" font-size="12">3</text>
+  <text x="874" y="345" fill="#e9e5db" font-family="monospace" font-size="12">clock.textContent =</text>
+  <text x="824" y="367" fill="#777982" font-family="monospace" font-size="12">4</text>
+  <text x="874" y="367" fill="#e9e5db" font-family="monospace" font-size="12">new Date().toLocaleTimeString();</text>
+  <text x="824" y="389" fill="#777982" font-family="monospace" font-size="12">5</text>
+  <text x="850" y="389" fill="#e9e5db" font-family="monospace" font-size="12">}</text>
+  <rect x="824" y="430" width="135" height="39" rx="9" fill="#303137"/>
+  <text x="844" y="455" fill="#ddd9d2" font-family="sans-serif" font-size="11">HTML</text>
+  <rect x="970" y="430" width="150" height="39" rx="9" fill="#303137"/>
+  <text x="990" y="455" fill="#ddd9d2" font-family="sans-serif" font-size="11">CSS</text>
+  <rect x="824" y="489" width="296" height="1" fill="#ffffff" fill-opacity=".1"/>
+  <circle cx="836" cy="523" r="5" fill="#82c98c"/>
+  <text x="851" y="527" fill="#c3c0ba" font-family="sans-serif" font-size="11">Preview synced · Changes apply instantly</text>
+</svg>

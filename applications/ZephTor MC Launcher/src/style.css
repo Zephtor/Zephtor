@@ -1,0 +1,121 @@
+window {
+    background: #090a0d;
+    color: #f3f4f7;
+}
+
+.app-shell {
+    background:
+        radial-gradient(ellipse at 82% 0%, alpha(#e23448, 0.12), transparent 34%),
+        #090a0d;
+}
+
+.topbar {
+    padding: 18px 30px;
+    border-bottom: 1px solid alpha(white, 0.08);
+    background: alpha(#101116, 0.94);
+}
+
+.brand-mark {
+    min-width: 42px;
+    min-height: 42px;
+    border: 1px solid alpha(#ff4d5a, 0.6);
+    border-radius: 14px;
+    background: #17181e;
+    color: #ff5966;
+    font-size: 19px;
+    font-weight: 900;
+}
+
+.brand-title { font-size: 14px; font-weight: 800; letter-spacing: 1.3px; }
+.brand-subtitle, .muted { color: #9295a1; font-size: 12px; }
+.eyebrow { color: #ff6874; font-size: 10px; font-weight: 800; letter-spacing: 1.5px; }
+.hero-title { font-size: 36px; font-weight: 800; letter-spacing: -1.5px; }
+.hero-description { color: #b7b9c3; font-size: 13px; }
+.section-title { font-size: 20px; font-weight: 750; }
+
+.hero {
+    padding: 28px;
+    border: 1px solid alpha(#ff4d5a, 0.25);
+    border-radius: 22px;
+    background:
+        radial-gradient(ellipse at 80% 10%, alpha(#e23448, 0.2), transparent 44%),
+        linear-gradient(135deg, #17181e, #101116);
+}
+
+.instance-card {
+    padding: 16px;
+    border: 1px solid alpha(white, 0.09);
+    border-radius: 16px;
+    background: #14151b;
+    transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+.instance-card:hover { border-color: alpha(#ff5966, 0.5); background: #191a21; }
+
+.instance-icon {
+    min-width: 42px;
+    min-height: 42px;
+    border-radius: 13px;
+    background: alpha(#ff5966, 0.14);
+    color: #ff6874;
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.instance-name { font-size: 14px; font-weight: 750; }
+
+.pill {
+    padding: 5px 9px;
+    border: 1px solid alpha(white, 0.1);
+    border-radius: 999px;
+    background: #1d1e25;
+    color: #c3c5ce;
+    font-size: 10px;
+}
+
+button.action {
+    min-height: 38px;
+    padding: 0 15px;
+    border: 1px solid alpha(#ff5966, 0.5);
+    border-radius: 11px;
+    background: #d93849;
+    color: white;
+    font-weight: 750;
+    transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+button.action:hover { background: #ed4959; }
+
+button.secondary {
+    min-height: 38px;
+    padding: 0 14px;
+    border: 1px solid alpha(white, 0.13);
+    border-radius: 11px;
+    background: #191a20;
+    color: #e8e9ed;
+    transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+button.secondary:hover { background: #23242c; }
+button:disabled { opacity: 0.45; }
+
+.notice {
+    padding: 16px;
+    border: 1px solid alpha(#ffbf69, 0.25);
+    border-radius: 14px;
+    background: alpha(#ffbf69, 0.07);
+    color: #d8c7a8;
+    font-size: 12px;
+}
+
+.side-panel {
+    min-width: 260px;
+    padding: 20px;
+    border: 1px solid alpha(white, 0.08);
+    border-radius: 18px;
+    background: #111217;
+}
+
+.side-heading { font-size: 13px; font-weight: 750; }
+.footer-note { color: #777a85; font-size: 10px; }
+entry, searchentry { min-height: 36px; }

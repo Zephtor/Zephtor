@@ -1,0 +1,26 @@
+app-id: org.zephtor.MCLauncher
+runtime: org.freedesktop.Platform
+runtime-version: "26.08"
+sdk: org.freedesktop.Sdk
+command: zephtor-mc-launcher
+finish-args:
+  - --share=ipc
+  - --share=network
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --socket=pulseaudio
+  - --device=dri
+  - --talk-name=org.freedesktop.portal.Desktop
+  - --filesystem=/usr/lib/jvm:ro
+modules:
+  - name: zephtor-mc-launcher
+    buildsystem: simple
+    build-commands:
+      - install -Dm755 zephtor-mc-launcher /app/bin/zephtor-mc-launcher
+      - install -Dm644 org.zephtor.MCLauncher.desktop /app/share/applications/org.zephtor.MCLauncher.desktop
+      - install -Dm644 assets/launcher-icon.svg /app/share/icons/hicolor/scalable/apps/org.zephtor.MCLauncher.svg
+      - install -Dm644 org.zephtor.MCLauncher.metainfo.xml /app/share/metainfo/org.zephtor.MCLauncher.metainfo.xml
+      - install -Dm644 launcher-config.example /app/share/zephtor-mc-launcher/launcher-config.example
+    sources:
+      - type: dir
+        path: .flatpak-src

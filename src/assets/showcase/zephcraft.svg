@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" fill="none">
+  <defs>
+    <linearGradient id="sky" x1="600" y1="0" x2="600" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#202b43"/><stop offset=".55" stop-color="#b4655c"/><stop offset="1" stop-color="#f0bd83"/>
+    </linearGradient>
+    <linearGradient id="sun" x1="743" y1="152" x2="923" y2="332" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff0bd"/><stop offset="1" stop-color="#f6a66f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" rx="34" fill="#0c0d12"/>
+  <rect x="18" y="18" width="1164" height="684" rx="24" fill="url(#sky)"/>
+  <circle cx="841" cy="244" r="94" fill="url(#sun)" fill-opacity=".94"/>
+  <path d="M18 399h131v-61h99v34h107v-91h117v68h112v-44h102v62h113v-92h118v69h126v-31h139v389H18V399Z" fill="#493750"/>
+  <path d="M18 461h106v-49h105v56h126v-85h101v74h127v-45h104v69h137v-83h101v75h120v-47h137v324H18V461Z" fill="#315247"/>
+  <path d="M18 532h170v-70h111v87h128v-52h104v77h141v-72h107v50h132v-83h123v65h148v188H18V532Z" fill="#213f39"/>
+  <path d="M18 627h188v-69h118v91h135v-61h124v78h130v-67h134v49h154v-92h111v68h188v78H18v-75Z" fill="#192d2e"/>
+  <g opacity=".96">
+    <rect x="151" y="467" width="92" height="67" fill="#73915a"/><rect x="243" y="467" width="92" height="67" fill="#8da967"/>
+    <rect x="151" y="534" width="92" height="67" fill="#695244"/><rect x="243" y="534" width="92" height="67" fill="#574538"/>
+    <rect x="804" y="426" width="82" height="66" fill="#6c8c59"/><rect x="886" y="426" width="82" height="66" fill="#879b5d"/>
+    <rect x="804" y="492" width="82" height="66" fill="#63503b"/><rect x="886" y="492" width="82" height="66" fill="#554232"/>
+    <rect x="972" y="499" width="63" height="55" fill="#72935e"/><rect x="1035" y="499" width="63" height="55" fill="#809b61"/>
+  </g>
+  <g opacity=".92">
+    <rect x="458" y="491" width="34" height="74" fill="#312e37"/><rect x="431" y="513" width="88" height="29" fill="#312e37"/>
+    <rect x="108" y="362" width="26" height="101" fill="#392e36"/><rect x="82" y="393" width="79" height="26" fill="#392e36"/>
+    <rect x="1052" y="359" width="24" height="100" fill="#392e36"/><rect x="1024" y="390" width="81" height="26" fill="#392e36"/>
+  </g>
+  <rect x="48" y="48" width="285" height="57" rx="15" fill="#0b0d13" fill-opacity=".7" stroke="#ffffff" stroke-opacity=".25"/>
+  <text x="70" y="73" fill="#f4d28e" font-family="sans-serif" font-size="11" font-weight="700" letter-spacing="2">ZEPHTOR CRAFT ULTRA</text>
+  <text x="70" y="92" fill="#fff5dc" font-family="sans-serif" font-size="12">Quest 04 · The Ember Valley</text>
+  <rect x="946" y="48" width="207" height="57" rx="15" fill="#0b0d13" fill-opacity=".7" stroke="#ffffff" stroke-opacity=".25"/>
+  <text x="970" y="73" fill="#c7d3c4" font-family="sans-serif" font-size="10" font-weight="700" letter-spacing="1">WORLD STATUS</text>
+  <circle cx="976" cy="91" r="4" fill="#88d091"/>
+  <text x="990" y="95" fill="#fff5dc" font-family="sans-serif" font-size="12">Adventure awaits</text>
+  <rect x="48" y="622" width="1104" height="47" rx="13" fill="#0b0d13" fill-opacity=".78" stroke="#ffffff" stroke-opacity=".16"/>
+  <rect x="66" y="635" width="38" height="21" rx="4" fill="#829958"/><rect x="108" y="635" width="38" height="21" rx="4" fill="#78624b"/>
+  <rect x="150" y="635" width="38" height="21" rx="4" fill="#496d72"/><rect x="192" y="635" width="38" height="21" rx="4" fill="#b17a52"/>
+  <rect x="234" y="635" width="38" height="21" rx="4" fill="#6b7953"/>
+  <text x="303" y="650" fill="#d9d4ca" font-family="sans-serif" font-size="12">Inventory  ·  24 / 36</text>
+  <text x="1020" y="650" fill="#f6d69d" font-family="sans-serif" font-size="12" font-weight="700">v2.4.0</text>
+</svg>

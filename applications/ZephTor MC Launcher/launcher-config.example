@@ -1,0 +1,8 @@
+# Die Microsoft OAuth-App-ID ist öffentlich, kein Geheimnis.
+# Die App speichert sie über die Oberfläche in der Benutzerkonfiguration.
+ZEPHTOR_MSA_CLIENT_ID=
+
+# Optionaler Java-Pfad; standardmäßig wird "java" aus PATH verwendet.
+JAVA=
+
+# Microsoft-Zugriffstoken werden nie in dieser Datei gespeichert.

@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#08090c">
+    <meta name="description" content="Lade AniPager und AOD Studio direkt von der Project-ZephTor-Website herunter.">
+    <title>ZephTor Apps — Linux-Downloads & Tools</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/styles.css?v=3">
+    <script src="../scripts/apps.js" defer></script>
+</head>
+<body>
+    <header class="site-header catalog-header">
+        <div class="shell">
+            <div class="header-row">
+                <a class="brand" href="../../index.html" aria-label="Project ZephTor Startseite">
+                    <span class="brand-mark"><img src="../assets/logo/Logo_Trans.png" alt=""></span>
+                    <span class="brand-copy"><span class="brand-name">ZEPHTOR APPS</span><span class="brand-tagline">Linux tools & downloads</span></span>
+                </a>
+                <nav class="main-nav" aria-label="Hauptnavigation">
+                    <a href="./modhub.html">ModHub</a>
+                    <a href="./apps.html" aria-current="page">Apps</a>
+                    <a href="./bots.html">Bots</a>
+                </nav>
+                <div class="header-actions">
+                    <button class="button button-small" id="openWishlistBtn" type="button">♡ Merkliste</button>
+                    <a class="button button-small desktop-action" href="../../index.html">Zur Startseite ↗</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="store-hero">
+            <div class="shell">
+                <div class="store-hero-grid">
+                    <div>
+                        <span class="eyebrow">Linux-Apps · Direktdownloads</span>
+                        <h1>Apps für deine<br><em>eigene Welt.</em></h1>
+                        <p>Entdecke AniPager und AOD Studio. Wähle eine Version und lade das Flatpak-Bundle direkt von dieser Website herunter.</p>
+                    </div>
+                    <aside class="store-note">
+                        <span class="category-icon" aria-hidden="true">⌘</span>
+                        <span><strong>Direkt von dieser Website</strong>Downloads werden nach Version sortiert und direkt hier gehostet. Nicht verfügbare Dateien werden nicht als Download angeboten.</span>
+                    </aside>
+                </div>
+
+                <section class="hero-carousel" aria-label="Ausgewählte Linux-App">
+                    <div>
+                        <span class="pill"><span class="pill-dot"></span><span>Ausgewähltes Tool</span></span>
+                        <div class="hero-art-copy">
+                            <small id="heroCategory">Anime-Bibliothek</small>
+                            <h2 id="heroTitle">AniPager</h2>
+                            <div class="app-rating" id="heroRating">0.1.0 · Linux x86_64</div>
+                            <p id="heroDescription">Entdecke Anime über AniList, bewerte Serien und verwalte deine Watchlist. Persönliche Daten bleiben lokal auf deinem Gerät.</p>
+                            <div class="app-meta" id="heroSpecs"></div>
+                            <div class="hero-actions">
+                                <button class="button button-lime" id="heroDownloadBtn" type="button">Datei herunterladen</button>
+                                <button class="button button-outline" id="heroDetailsBtn" type="button">Details</button>
+                            </div>
+                        </div>
+                        <div class="carousel-dots" id="appsHeroDots" aria-label="Ausgewählte Tools"></div>
+                    </div>
+                    <div class="hero-carousel-image">
+                        <img id="heroImage" src="../assets/showcase/anipager.svg" alt="AniPager-Benutzeroberfläche mit Anime-Watchlist und Bewertungen">
+                    </div>
+                </section>
+
+                <div class="store-toolbar">
+                    <label class="store-search">
+                        <input class="search-input" type="search" id="appsSearch" placeholder="Apps und Tools durchsuchen…" autocomplete="off" aria-label="Apps durchsuchen">
+                    </label>
+                    <select class="sort-select" id="appsSort" aria-label="Apps sortieren">
+                        <option value="featured">Sortierung: Empfohlen</option>
+                        <option value="newest">Neueste Version</option>
+                        <option value="name">Name (A–Z)</option>
+                    </select>
+                </div>
+                <div class="app-grid" id="appsGrid" aria-live="polite"></div>
+                <div class="empty-state" id="appsEmptyState" hidden>
+                    <h2>Keine passenden Tools.</h2>
+                    <p>Ändere deine Suche oder setze die Filter zurück.</p>
+                    <button class="button button-outline" id="appsReset" type="button">Alle Tools zeigen</button>
+                </div>
+                <p class="store-footer-note">Direktdownloads sind versioniert. Wenn für eine Version keine Datei angezeigt wird, wurde sie noch nicht auf dieser Website hinterlegt.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="shell footer-row">
+            <a class="brand" href="../../index.html"><span class="brand-mark"><img src="../assets/logo/Logo_Trans.png" alt=""></span><span class="brand-copy"><span class="brand-name">PROJECT ZEPHTOR</span><span class="brand-tagline">Build your own universe</span></span></a>
+            <nav class="footer-links" aria-label="Weitere Bereiche"><a href="./modhub.html">ModHub</a><a href="./bots.html">Bot Showcase</a><a href="../../index.html">Startseite</a></nav>
+        </div>
+    </footer>
+
+    <div class="modal" id="appModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+        <section class="modal-panel modal-panel-wide">
+            <div class="project-image">
+                <img id="modalBanner" src="" alt="">
+                <span class="image-category" id="modalCategory"></span>
+                <button class="modal-close modal-close-floating" type="button" data-close-app aria-label="Fenster schließen">×</button>
+            </div>
+            <div class="modal-head">
+                <div><span class="eyebrow" id="modalVersion"></span><h2 id="modalTitle"></h2></div>
+                <span class="app-rating" id="modalRating"></span>
+            </div>
+            <div class="modal-body">
+                <div class="app-meta"><span id="modalPlatform"></span><span id="modalSize"></span></div>
+                <p id="modalDescription"></p>
+                <div class="tag-list" id="modalTags"></div>
+            </div>
+            <footer class="modal-actions">
+                <button class="button button-outline" id="modalWishlistBtn" type="button">♡ Merken</button>
+                <button class="button" id="modalDownloadBtn" type="button">Datei herunterladen</button>
+            </footer>
+        </section>
+    </div>
+
+    <div class="modal" id="wishlistModal" role="dialog" aria-modal="true" aria-labelledby="wishlistTitle" hidden>
+        <section class="modal-panel">
+            <header class="modal-head"><div><span class="eyebrow">Für später</span><h2 id="wishlistTitle">Deine Merkliste</h2></div><button class="modal-close" type="button" data-close-wishlist aria-label="Fenster schließen">×</button></header>
+            <div class="modal-body"><div class="drawer-list" id="wishlistContainer"></div></div>
+        </section>
+    </div>
+
+    <div class="modal" id="downloadModal" role="dialog" aria-modal="true" aria-labelledby="downloadTitle" hidden>
+        <section class="modal-panel">
+            <header class="modal-head"><div><span class="eyebrow">Website-Download</span><h2 id="downloadTitle"></h2></div><button class="modal-close" type="button" data-close-download aria-label="Fenster schließen">×</button></header>
+            <div class="modal-body">
+                <p id="downloadDescription"></p>
+                <section class="download-option" aria-labelledby="downloadOptionTitle">
+                    <h3 id="downloadOptionTitle">Datei herunterladen</h3>
+                    <div class="release-picker">
+                        <label for="releaseVersion">Version auswählen</label>
+                        <select id="releaseVersion" class="sort-select"></select>
+                    </div>
+                    <p class="release-selected" id="selectedReleaseLabel"></p>
+                    <div class="resource-list download-files" id="downloadFiles"></div>
+                    <p class="download-unavailable" id="downloadUnavailable"></p>
+                    <ul class="release-notes" id="releaseNotes" hidden></ul>
+                </section>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
