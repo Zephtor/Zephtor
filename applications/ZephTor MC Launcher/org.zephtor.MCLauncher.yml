@@ -1,8 +1,8 @@
 app-id: org.zephtor.MCLauncher
 branch: stable
-runtime: org.freedesktop.Platform
-runtime-version: "26.08"
-sdk: org.freedesktop.Sdk
+runtime: org.gnome.Platform
+runtime-version: "51"
+sdk: org.gnome.Sdk
 command: zephtor-mc-launcher
 finish-args:
   - --share=ipc

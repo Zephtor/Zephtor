@@ -39,7 +39,7 @@ Die Version wird im Flatpak unter `~/.var/app/org.zephtor.MCLauncher/data/zephto
 flatpak install --user dist/ZephTor-MC-Launcher.flatpak
 ```
 
-Das Bundle liegt danach unter `dist/ZephTor-MC-Launcher.flatpak`. Es verwendet die Freedesktop-26.08-Laufzeit; Java wird bewusst nicht mitgebündelt, damit die App klein bleibt.
+Das Bundle liegt danach unter `dist/ZephTor-MC-Launcher.flatpak`. Es verwendet die GNOME-51-Laufzeit für GTK 4; Java wird bewusst nicht mitgebündelt, damit die App klein bleibt.
 
 ## Tests
 

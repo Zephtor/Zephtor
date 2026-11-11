@@ -1,5 +1,30 @@
 const APPS = [
     {
+        id: 'zephtor-mc-launcher',
+        title: 'ZephTor MC Launcher',
+        category: 'app',
+        categoryLabel: 'Minecraft Launcher',
+        icon: 'MC',
+        tags: ['Minecraft', 'Vanilla', 'Java', 'Flatpak'],
+        version: '0.1.0',
+        releases: [{
+            version: '0.1.0',
+            date: '11.11.2026',
+            notes: ['Eigenständiger Vanilla-Launcher mit optionaler PrismLauncher-Kompatibilität.'],
+            files: [{
+                filename: 'ZephTor-MC-Launcher.flatpak',
+                path: '../assets/downloads/ZephTor-MC-Launcher.flatpak',
+                label: 'ZephTor MC Launcher für Linux (Flatpak)',
+                size: '1,2 MB',
+                sha256: ''
+            }]
+        }],
+        platform: 'Linux · x86_64',
+        description: 'Spiele Minecraft Java Edition mit einem eigenständigen, ressourcenschonenden Launcher. Lade offizielle Vanilla-Versionen herunter; PrismLauncher bleibt optional. Java und eine öffentliche Microsoft-App-ID sind nicht enthalten.',
+        banner: '../assets/showcase/mc-launcher.png',
+        featured: true
+    },
+    {
         id: 'anipager',
         title: 'AniPager',
         category: 'app',

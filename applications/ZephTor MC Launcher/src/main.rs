@@ -155,7 +155,7 @@ fn update_instance_list(ui: &LauncherUi) {
         ui.prism_status
             .set_text("● Eigenständiger Launcher · Prism optional");
         ui.connection_status.set_text(
-            "PrismLauncher ist optional. Der eigenständige Spielstart wird noch aufgebaut.",
+            "Der eigenständige Vanilla-Spielstart ist verfügbar. PrismLauncher bleibt optional.",
         );
         ui.open_prism.set_sensitive(false);
     }
@@ -465,7 +465,7 @@ fn build_ui(application: &Application) {
     let list = GtkBox::new(Orientation::Vertical, 10);
     instances_panel.append(&list);
     let empty_notice = label(
-        "Noch keine Instanzen gefunden. PrismLauncher-Instanzen lassen sich optional importieren; der eigenständige Spielstart folgt.",
+        "Keine Instanzen gefunden. Du kannst eine Vanilla-Version herunterladen und direkt starten; Prism-Instanzen bleiben optional importierbar.",
         "notice",
     );
     empty_notice.set_wrap(true);
@@ -502,7 +502,7 @@ fn build_ui(application: &Application) {
     side.append(&client_id_status);
     side.append(&Separator::new(Orientation::Horizontal));
     let note = label(
-        "Native GTK-Oberfläche ohne Webview. Prism-Import ist optional; eigener Login, Versionen, Downloads und Spielstart müssen noch implementiert werden.",
+        "Native GTK-Oberfläche ohne Webview. Vanilla-Downloads und Microsoft-Geräteanmeldung sind integriert. Zum Spielen brauchst du Java und eine öffentliche Microsoft-App-ID.",
         "footer-note",
     );
     note.set_wrap(true);
